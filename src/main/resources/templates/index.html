@@ -6,20 +6,18 @@
 		<div th:replace="~{fragment::styles}"></div>
 		<title>トップページ</title>
 		
-	
-		<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default" type="text/css"></script>
-	
 		<script type="module" th:src="@{/js/map.js}"></script>
+		<script th:inline="javascript">
+			var spotList = /*[[${spotList}]]*/"spotList";
+				        
+		</script>
 		
 		
 		
 	</head>
 	
 	<body>
-		<script th:inline="javascript">
-				const spotList = /*[[${spotList}]]*/"spotList";
-		        
-		</script>
+		
 		
 		
 		
@@ -32,8 +30,13 @@
 					<div>
 						住所の部分検索
 					</div>
-					<div>
-						ピンの種類でのソート
+					
+					<div class="mb-5">
+						<form method="get" th:action="@{/}" >
+							<span th:each="category:${categoryList}">
+								<button type="submit" th:text="${category.getName()}" name="categoryId" th:value="${category.getId()}"  class="btn btn-outline-secondary btn-sm  mb-2"></button>
+							</span>
+						</form>	
 					</div>
 					
 					<div id="map"></div>

@@ -5,9 +5,10 @@ let mapId="450e2771037cc321";
 let infoWindow;
 var marker=[];
 var markerLatLng=[];
-
-
 var markerData = spotList;
+
+
+
 
 
 //マップ生成
@@ -34,6 +35,7 @@ async function initMap() {
 	}
 	
 //マーカーの生成
+	
 	for(var i=0;i<markerData.length;i++)
 	{
 		
