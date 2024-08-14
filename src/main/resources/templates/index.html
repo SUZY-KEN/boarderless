@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" >
+
+	<head>
+		<div th:replace="~{fragment::meta}"></div>
+		<div th:replace="~{fragment::styles}"></div>
+		<title>トップページ</title>
+		
+	
+		<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=default" type="text/css"></script>
+	
+		<script type="module" th:src="@{/js/map.js}"></script>
+		
+		
+		
+	</head>
+	
+	<body>
+		<script th:inline="javascript">
+				const spotList = /*[[${spotList}]]*/"spotList";
+		        
+		</script>
+		
+		
+		
+		<div class="boarderless-wrapper">
+			<div th:replace="~{fragment::header}"></div>
+			
+			<main>
+				
+				<div class="container boarderless-container">
+					<div>
+						住所の部分検索
+					</div>
+					<div>
+						ピンの種類でのソート
+					</div>
+					
+					<div id="map"></div>
+				</div>
+			</main>
+
+			<div th:replace="~{fragment::footer}"></div>
+
+		</div>
+	
+		
+		<div th:replace="~{fragment::scripts}"></div>
+		
+	</body>
+</html>
