@@ -2,6 +2,8 @@ package com.example.boarderless.Entity;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +18,7 @@ import lombok.Data;
 @Entity
 @Table(name="spot")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class Spot {
 	@Id
@@ -24,10 +27,10 @@ public class Spot {
 	private Integer id;
 	
 	@Column(name="lat")
-	private float lat;
+	private Double lat;
 	
 	@Column(name="lng")
-	private float lng;
+	private Double lng;
 	
 	
 //	リレーションシップでつなぐ

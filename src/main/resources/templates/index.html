@@ -7,10 +7,6 @@
 		<title>トップページ</title>
 		
 		<script type="module" th:src="@{/js/map.js}"></script>
-		<script th:inline="javascript">
-			var spotList = /*[[${spotList}]]*/"spotList";
-				        
-		</script>
 		
 		
 		
@@ -32,14 +28,22 @@
 					</div>
 					
 					<div class="mb-5">
-						<form method="get" th:action="@{/}" >
-							<span th:each="category:${categoryList}">
-								<button type="submit" th:text="${category.getName()}" name="categoryId" th:value="${category.getId()}"  class="btn btn-outline-secondary btn-sm  mb-2"></button>
-							</span>
-						</form>	
+					
+						<span th:each="category:${categoryList}">
+							
+							<button type="button"  th:text="${category.getName()}" name="categoryId" th:value="${category.getId()}"  class="btn btn-outline-secondary btn-sm  mb-2 category-btn" th:id="'categoryId'+${category.getId()}"></button>
+						</span>
+						
 					</div>
 					
-					<div id="map"></div>
+					<div id="mapContainer" class=" d-flex">
+						<div id="map"></div>
+						<div id="review-container" class="d-flex flex-column">
+							
+						</div>
+
+						
+					</div>
 				</div>
 			</main>
 

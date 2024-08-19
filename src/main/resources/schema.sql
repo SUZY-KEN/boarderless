@@ -32,8 +32,8 @@ image_url varchar (255)not null
 
 create table if not exists spot(
 id int not null auto_increment primary key,
-lat float not null,
-lng float not null,
+lat double not null,
+lng double not null,
 user_id int not null,
 imagefile_id int ,
 category_id int ,
