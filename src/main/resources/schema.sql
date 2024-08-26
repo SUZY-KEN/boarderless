@@ -49,3 +49,15 @@ foreign key (user_id) references user (id)
 
 );
 
+create table if not exists  review (
+id int not null auto_increment primary key,
+user_id int not null,
+spot_id int not null,
+evalues int ,
+contents varchar (255),
+created_at datetime not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+foreign key (user_id) references user (id),
+foreign key (spot_id) references spot (id)
+)
+
+

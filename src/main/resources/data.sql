@@ -44,3 +44,16 @@ insert ignore into spot(id,name,user_id,price,category_id,description,evalues,ev
 insert ignore into spot(id,name,user_id,price,category_id,description,evalues,evalues_double,lat,lng) values (10,"スケボー10",5,700,13,"いい滑り場所です",3,3.0,34.9277915479363, 137.13888017527503);
 insert ignore into spot(id,name,user_id,price,category_id,description,evalues,evalues_double,lat,lng) values (11,"スケボー11",5,600,13,"いい滑り場所です",3,3.0,35.16280261444819, 136.90617541505003);
 
+--レビュー
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(1,1,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(2,2,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(3,3,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(4,4,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(5,5,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(6,6,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(7,7,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(8,8,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(9,9,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(10,10,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(11,11,1,3,"良い"); 
+insert ignore into review(id,user_id,spot_id,evalues,contents) values(12,12,1,3,"良い"); 
