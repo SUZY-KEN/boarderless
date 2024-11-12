@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment::meta}"></div>
+	<div th:replace="~{fragment::styles}"></div>
+	<title>ログイン</title>
+</head>
+
+<body>
+	<div class="boarderless-wrapper2">
+		<header>
+					
+			<div class="header-content" style="position: fixed;top: 0;left:0;">
+
+				<a sec:authorize="isAnonymous()" th:href="@{/}"><img th:src="@{/image/boarderLessLogo.png}"
+						class="logo"></a>
+				<a sec:authorize="hasRole('ROLE_GENERAL')" th:href="@{/}"><img th:src="@{/image/boarderLessLogo.png}"
+						class="logo"></a>
+				<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><img th:src="@{/image/boarderLessLogo.png}"
+						class="logo"></a>
+
+			
+				<hr class="my-0">
+		</header>
+	
+	
+	<main>
+		
+
+		
+
+		<div class="header-margin"></div>
+		<div class="gradiention-container"></div>
+		
+<!--ログイン-->
+		<div class="sub-boarderless-container perminent-height">
+		<div class="container">
+	<!--パンくず	-->
+			<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="py-2">
+	           <ol class="breadcrumb mb-0">                        
+	               <li class="breadcrumb-item"><a class="white-a" th:href="@{/}">ホーム</a></li>
+	               <li class="breadcrumb-item" aria-current="page">ログイン</li>
+	           </ol>
+	       </nav>   
+			
+			
+			<div class="d-flex align-items-center justify-content-center">
+				<div class="col-xl-3 col-lg-4 col-md-5 col-sm-7">
+
+					<h1 class="mb-4 text-center">ログイン</h1>
+					
+					<div th:if="${param.error}" class="alert alert-danger">
+		                メールアドレスまたはパスワードが正しくありません。
+		            </div>
+					
+					
+					<form method="post" th:action="@{/login}">
+						
+						<div class="form-group mb-3">
+							<input type="text" name="username" autocomplete="name" placeholder="ニックネーム" autofocus class="form-control bg-transparent	border border-secondary">
+						</div>
+						<div class="form-group mb-3">
+							<input type="password" name="password" autocomplete="new-password" placeholder="パスワード"	class="form-control bg-transparent	border border-secondary">
+						</div>
+
+		<!-- Remember Me チェックボックス -->
+						<div class="form-group mb-3">
+							<input type="checkbox" name="remember-me" id="remember-me" class="form-check-input">
+							<label for="remember-me" class="form-check-label">ログイン状態を保持する</label>
+						</div>
+						<div class="form-group d-flex justify-content-center my-4 outer-btn-boarderless ">
+							<button type="submit" class=" w-100 btn-boarderless">ログイン</button>
+						</div>
+					</form>
+					
+					
+				
+					
+					<div class="text-center">
+		                 <a th:href="@{/signup}" class="white-a">
+		                     会員登録
+		                 </a>
+		             </div> 
+				</div>   
+			</div>
+		</div>	
+		</div>	
+
+
+	</main>
+	
+	
+	
+	</div>
+	
+	<div th:replace="~{fragment::scripts}"></div>
+</body>
+</html>

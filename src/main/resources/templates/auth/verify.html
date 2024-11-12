@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment::meta}"></div>
+	<div th:replace="~{fragment::styles}"></div>
+	<title>会員登録</title>
+</head>
+
+<body>
+	<div class="boarderless-wrapper">
+	<div th:replace="~{fragment::header}"></div>
+	
+	<main>
+
+	
+		
+		<div class="sub-boarderless-container ">
+		<div class="container ">
+	<!--パンくず	-->
+			<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="py-2">
+	           <ol class="breadcrumb mb-0">                        
+	               <li class="breadcrumb-item"><a th:href="@{/}" class="white-a">ホーム</a></liclass="breadcrumb-item">
+	               <li class="breadcrumb-item" aria-current="page">登録完了</li>
+	           </ol>
+	       </nav>  
+				     
+		   <div class="d-flex align-items-center justify-content-center">
+				<div th:if="${successMessage}" class="alert w-50 alert-info ">
+		            <span th:text="${successMessage}"></span>
+		        </div>   
+				
+				<div th:if="${errorMessage}" class="alert alert-info">
+		            <span th:text="${errorMessage}"></span>
+		        </div> 
+		   </div>	  
+	    </div>
+		</div>
+
+	</main>
+	
+	
+	
+	</div>
+	<div th:replace="~{fragment::scripts}"></div>
+</body>
+</html>

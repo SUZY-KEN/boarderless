@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment::meta}"></div>
+	<div th:replace="~{fragment::styles}"></div>
+	<title>サイト情報</title>
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+	<div class="boarderless-wrapper2">
+		<header>
+
+			<div class="header-content" style="position: fixed;top: 0;left:0;">
+
+				<a sec:authorize="isAnonymous()" th:href="@{/}"><img th:src="@{/image/boarderLessLogo.png}"
+						class="logo"></a>
+				<a sec:authorize="hasRole('ROLE_GENERAL')" th:href="@{/}"><img th:src="@{/image/boarderLessLogo.png}"
+						class="logo"></a>
+				<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><img th:src="@{/image/boarderLessLogo.png}"
+						class="logo"></a>
+
+				<div class="fixed-index">
+					<button id="js-hamburger" type="button" class="hamburger" aria-controls="navigation"
+						aria-expanded="false" aria-label="メニューを開く">
+						<span class="hamburger__line"></span>
+						<span class="hamburger__text"></span>
+					</button>
+
+				</div>
+				<hr class="my-0">
+		</header>
+
+		<main>
+			<div class="header-margin"></div>
+			<div class="gradiention-container"></div>
+			<div class="sub-boarderless-container perminent-height">
+				<div class="container">
+
+
+					<!--パンくず	-->
+					<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="py-2">
+						<ol class="breadcrumb mb-0">
+							<li class="breadcrumb-item"><a class="white-a"
+									th:href="@{/}">ホーム</a></liclass="breadcrumb-item">
+							<li class="breadcrumb-item" aria-current="page">サイト情報</li>
+						</ol>
+					</nav>
+
+
+					<!--					   	<h1 class="mb-5 text-center"	th:text="サイト情報"></h1>-->
+
+
+					<div class="grid-system">
+						<div class="site-table">
+
+							<nav class="site-table-nav">
+								<div class="d-flex">
+									<img th:src="@{/image/site-paragraph-top-img.png}">
+									<h4 class="m-0">目次</h4>
+								</div>
+
+								<div>
+
+									<hr class="mt-1 mb-2 ">
+									<ul>
+										<li class="site-map-list">
+
+											<a>標準機能<span style="margin-left: 0.2rem;">&#x25BE;</span></a>
+											<ul>
+												<li><a href="javascript:void(0)" class="white-a" data-index="1"
+														onclick="tapIndexElem(this)">スポットの並び替え</a></li>
+												<li><a href="javascript:void(0)" class="white-a" data-index="2"
+														onclick="tapIndexElem(this)">スポットのソート</a></li>
+												<li><a href="javascript:void(0)" class="white-a" data-index="3"
+														onclick="tapIndexElem(this)">アンカー機能</a></li>
+
+											</ul>
+										</li>
+
+										<li class="site-map-list">
+											<a>メンバー機能<span style="margin-left: 0.2rem;">&#x25BE;</span></a>
+											<ul>
+												<li><a href="javascript:void(0)" class="white-a" data-index="4"
+														onclick="tapIndexElem(this)">スポットの登録手順</a></li>
+												<li><a href="javascript:void(0)" class="white-a" data-index="5"
+														onclick="tapIndexElem(this)">お気に入りについて</a></li>
+												<li><a href="javascript:void(0)" class="white-a" data-index="6"
+														onclick="tapIndexElem(this)">通報機能について</a></li>
+
+
+											</ul>
+										</li>
+
+										<li class="site-map-list">
+											<a>注意<span style="margin-left: 0.2rem;">&#x25BE;</span></a>
+											<ul>
+												<li><a href="javascript:void(0)" class="white-a" data-index="7"
+														onclick="tapIndexElem(this)">登録スポットでのトラブルについて</a></li>
+												<li><a href="javascript:void(0)" class="white-a" data-index="8"
+														onclick="tapIndexElem(this)">登録スポットの管理について</a></li>
+											</ul>
+										</li>
+										<li class="site-map-list"><a href="javascript:void(0)" class="white-a"
+												data-index="9" onclick="tapIndexElem(this)">お問い合わせ</a></li>
+									</ul>
+								</div>
+
+							</nav>
+
+							<!--								<div class="site-table-editor" id="editor">-->
+							<!--									<div class="d-flex">-->
+							<!--										<img th:src="@{/image/site-paragraph-top-img.png}">-->
+							<!--										<h4 class="m-0">管理者</h4>-->
+							<!--									</div>-->
+							<!--									<div>-->
+
+
+							<!--										<hr class="mt-1 mb-2 ">-->
+							<!--										<img th:src="@{/image/test-image.png}" alt="自己紹介写真"class="w-100" >-->
+							<!--										<h5 class="m-0">スジケン</h5>-->
+							<!--										<hr class="mt-1 mb-1 ">-->
+							<!--										<p>プログラミングの勉強をしている者です。</p>-->
+							<!--										<p>最近趣味でスケートボードをはじめ、皆様とおすすめのスポットを共有したいと考え、このサイトを作りました。</p>-->
+
+							<!--										<p>より便利なサイトを目指してコンテンツを強化していきたいと考えておりますので、-->
+							<!--											<br>ご要望や不具合がありましたら下記からご連絡ください。</p>-->
+
+							<!--										<div class="my-3"><a href="mailto:suzyken.ilu@gmail.com" class="info-btn info-btn-aradient"><span>メールお問い合わせ<span></a></div>-->
+							<!--									</div>-->
+
+							<!--								</div>-->
+
+						</div>
+
+						<div class="site-main-content">
+							<div class="site-main-content-top">
+								<div>お気に入りのスポットを共有しよう</div>
+							</div>
+
+							<div class="site-main-content-paragraph">
+								<div class="d-flex 	align-items-end" style="height:35px;width:100%;position: relative;">
+									<img th:src="@{/image/site-paragraph-top-img.png}" style="height:100%">
+									<h2 class="m-0" style="height:100%">サイトの狙い</h2>
+									<div
+										style="margin-left:30px;font-weight: bold;height:100%;display: flex; align-items: flex-end;">
+										AIM</div>
+								</div>
+								<hr class=" mb-2">
+								<div class="d-flex">
+									<div class="site-main-content-paragraph-content">
+										<ul>
+											<li class="site-map-list">初心者スケーターの練習場所探し</li>
+											<li class="site-map-list">自分の作成したスポットへスケーターを誘致</li>
+											<li class="site-map-list">パークやショップの広告</li>
+										</ul>
+										<p>上記を想定してこのサイトを作りました。皆様でいろいろな使い方をしてくれると嬉しいです。</p>
+									</div>
+
+								</div>
+							</div>
+
+							<div class="site-main-content-paragraph">
+								<div class="d-flex 	align-items-end" style="height:35px;width:100%;position: relative;">
+									<img th:src="@{/image/site-paragraph-top-img.png}" style="height:100%">
+									<h2 class="m-0" style="height:100%">サイトの使い方</h2>
+									<div
+										style="margin-left:30px;font-weight: bold;height:100%;display: flex; align-items: flex-end;">
+										PURPOSE</div>
+
+								</div>
+								<hr class=" mb-2">
+								<div class="site-main-content-paragraph-content site-index-object " data-parent="1">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">スポットの並び替え</h4>
+										</div>
+										<div data-toggle="1" class="site-toggle-btn">+</div>
+									</div>
+
+									<hr class=" mb-2">
+
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										style="display:none" data-child="1">
+										<p>表示されるスポットは評価の高い順に並んでいます。</p>
+										<p>投稿順のボタンをタップすることで直近の投稿時間のスポットを閲覧することができます。</p>
+										<p>スポットを評価の高い順に戻したいときはもう一度投稿順のボタンをタップしてください。</p>
+										<img th:src="@{/image/site-manual/sort/sort1.png}" style="width:100%">
+
+									</div>
+
+
+								</div>
+
+								<div class="site-main-content-paragraph-content site-index-object" data-parent="2">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">スポットのソート
+
+											</h4>
+										</div>
+										<div data-toggle="2" class="site-toggle-btn">+</div>
+									</div>
+
+									<hr class=" mb-2">
+
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										style="display:none" data-child="2">
+
+										<p>カテゴリーの指定することでスポットをソートすることができます。</p>
+										<p>ロゴ横のボタンを一つ選びタップするとそのカテゴリー該当するスポットを閲覧することができます。</p>
+										<img th:src="@{/image/site-manual/sort/sort2.png}"
+											style="width:100%;margin-bottom: 1rem;">
+										<p>タップするとオレンジ色になります。</p>
+										<p>全てのスポットを表示したい場合はオレンジ色のボタンをタップしてください。</p>
+										<img th:src="@{/image/site-manual/sort/sort3.png}" style="width:100%">
+									</div>
+
+
+								</div>
+
+
+
+								<div class="site-main-content-paragraph-content site-index-object" data-parent="3">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">アンカー機能</h4>
+										</div>
+
+										<div data-toggle="3" class="site-toggle-btn">+</div>
+									</div>
+									<hr class=" mb-2">
+
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										style="display:none" data-child="3">
+										<p>スポットの詳細タブを開くと画像の下に案かアンカーというボタンが出てきます。</p>
+										<p>タップすると詳細タブを開いているスポットを画面の中央に表示します。</p>
+
+										<img th:src="@{/image/site-manual/anchor/anchor.png}" style="width:100%">
+									</div>
+
+
+								</div>
+
+								<div class="site-main-content-paragraph-content site-index-object" data-parent="4">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">スポットの登録手順</h4>
+										</div>
+										<div data-toggle="4" class="site-toggle-btn">+</div>
+									</div>
+
+									<hr class=" mb-2">
+
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										style="display:none" data-child="4">
+										<ol>
+											<li>左のメニューバー（スマホは上部）のスポット登録ボタンをタップ</li>
+											<li>SpotRegisterの表示が画面左下（スマホは右上）に表示されたら、登録したいスポットのマップ上の位置をタップ</li>
+											<li>スポット登録フォームに記入し、登録ボタンをタップ</li>
+											<li>管理者が承認するまでお待ちください</li>
+											<li>承認されたら、お知らせボックスに承認された旨のメッセージが届きます</li>
+											<li>スポット一覧横のマイスポットにてスポットが登録されているか確認できます</li>
+										</ol>
+
+									</div>
+
+
+								</div>
+
+
+								<div class="site-main-content-paragraph-content site-index-object" data-parent="5">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">お気に入りについて</h4>
+										</div>
+
+										<div data-toggle="5" class="site-toggle-btn">+</div>
+									</div>
+
+									<hr class=" mb-2">
+
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										style="display:none" data-child="5">
+										<p>スポット詳細タブのお気に入りボタンをタップするとお気に入りスポットを登録することができます。</p>
+										<p>お気に入りしたスポットはスポット一覧の右のお気に入りボタンをタップすることで、閲覧することができます。</p>
+										<img th:src="@{/image/site-manual/favorite/fav1.png}" style="width:100%	">
+
+
+
+									</div>
+
+
+								</div>
+
+								<div class="site-main-content-paragraph-content site-index-object" data-parent="6">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">通報機能について</h4>
+										</div>
+
+										<div data-toggle="6" class="site-toggle-btn">+</div>
+									</div>
+
+									<hr class=" mb-2">
+
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										style="display:none" data-child="6">
+										<p>スポット詳細タブに通報ボタンを設けております。</p>
+										<p>問題のあるスポットの何が問題かを詳細に記述していただけると幸いです。</p>
+										<p>また、問題度が高い場合にはお問い合わせよりご連絡いただけると幸いです。</p>
+									</div>
+
+
+								</div>
+
+
+								<div class="site-main-content-paragraph-content site-index-object" data-parent="7">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">登録スポットでのトラブルについて</h4>
+										</div>
+
+										<div data-toggle="7" class="site-toggle-btn">+</div>
+									</div>
+									<hr class=" mb-2">
+
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										style="display:none" data-child="7">
+
+										<p style="text-decoration: underline;"> ユーザーの方へ</p>
+										<div style="margin-left: 2rem;">
+											<p>スポットの承認はこちらで管理していますが、いたずらでの登録や不適切な表現があった際に弾く意図で行っていますので、</p>
+											<p> 登録されているスポットでの土地所有者とのトラブルなどの現場で起こる諸々には一切責任を負いかねますのでご了承ください。</p>
+
+										</div>
+
+										<p style="text-decoration: underline;">トラブルに遭われた方</p>
+										<div style="margin-left: 2rem;">
+											<p>土地の所有者や近隣の住民の方でトラブルに遭われた方は、サイト内の通報ボタン又はお問い合わせよりご連絡ください。</p>
+											<p>内容によってスポットの削除を行わせていただきます。</p>
+											<p> こちらではトラブルの責任は一切負いかねますのでご了承ください。</p>
+										</div>
+
+
+									</div>
+
+
+								</div>
+								<div class="site-main-content-paragraph-content site-index-object" data-parent="8">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">登録スポットの管理について</h4>
+										</div>
+
+										<div data-toggle="8" class="site-toggle-btn">+</div>
+									</div>
+
+									<hr class=" mb-2">
+
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										data-child="8" style="display:none">
+
+										<p>承認の作業を人力で行っていますので、スポットの登録処理をおこなってからの待ち時間にばらつきが出てくると思いますが、ご容赦ください。</p>
+
+										<p>被害の声が上がったスポットに関しましては、勝手ながらこちらで削除することがありますので、ご理解いただけますと幸いです。</p>
+
+
+									</div>
+
+
+								</div>
+
+								<div class="site-main-content-paragraph-content site-index-object"
+									style="margin-bottom:2.25rem; " data-parent="9">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">お問い合わせ</h4>
+										</div>
+
+										<div data-toggle="9" class="site-toggle-btn">+</div>
+									</div>
+
+									<hr class=" mb-2">
+
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										data-child="9" style="display:none">
+
+										<p> より便利なサイトを目指してコンテンツを強化していきたいと考えておりますので、ご要望や不具合がありましたら下記からご連絡ください。</p>
+										<div class="my-3"><a th:href="'mailto:' + ${address}"
+												class="info-btn info-btn-aradient"><span>メールお問い合わせ<span></a></div>
+
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="header__nav-area js-nav-area" id="navigation">
+						<nav id="js-global-navigation" class="global-navigation">
+							<ul class="global-navigation__list">
+
+								<li>
+									<button type="button"
+										class="global-navigation__link -accordion js-sp-accordion-trigger"
+										aria-expanded='false' aria-controls="accordion1">
+										標準機能
+									</button>
+									<div id="accordion1" class="accordion js-accordion">
+										<ul class="accordion__list">
+											<li>
+
+												<a href="javascript:void(0)" class=" accordion__link" data-index="1"
+													onclick="tapIndexElem(this,true)">スポットの並び替え</a>
+
+											</li>
+											<li>
+												<a href="javascript:void(0)" class=" accordion__link" data-index="2"
+													onclick="tapIndexElem(this,true)">スポットのソート</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)" class="accordion__link" data-index="3"
+													onclick="tapIndexElem(this,true)">アンカー機能</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<button type="button"
+										class="global-navigation__link -accordion js-sp-accordion-trigger"
+										aria-expanded='false' aria-controls="accordion1">
+										メンバー機能
+									</button>
+									<div id="accordion1" class="accordion js-accordion">
+										<ul class="accordion__list">
+											<li>
+												<a href="javascript:void(0)" class="accordion__link" data-index="4"
+													onclick="tapIndexElem(this,true)">スポットの登録手順</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)" class="accordion__link" data-index="5"
+													onclick="tapIndexElem(this,true)">お気に入りについて</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)" class="accordion__link" data-index="6"
+													onclick="tapIndexElem(this,true)">通報機能について</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<button type="button"
+										class="global-navigation__link -accordion js-sp-accordion-trigger"
+										aria-expanded='false' aria-controls="accordion1">
+										注意
+									</button>
+									<div id="accordion1" class="accordion js-accordion">
+										<ul class="accordion__list">
+											<li>
+												<a href="javascript:void(0)" class="accordion__link" data-index="7"
+													onclick="tapIndexElem(this,true)">登録スポットでのトラブルについて</a>
+											</li>
+											<li>
+												<a href="javascript:void(0)" class="accordion__link" data-index="8"
+													onclick="tapIndexElem(this,true)">登録スポットの管理について</a>
+											</li>
+
+										</ul>
+									</div>
+								</li>
+								<li>
+
+									<a href="javascript:void(0)" class=" global-navigation__link" data-index="9"
+										onclick="tapIndexElem(this,true)">お問い合わせ</a>
+
+								</li>
+							</ul>
+							<div id="js-focus-trap" tabindex="0"></div>
+						</nav>
+					</div>
+				</div>
+			</div>
+	</div>
+
+
+
+
+
+	</div>
+
+
+
+
+	</main>
+
+
+
+	</div>
+
+
+	<div th:replace="~{fragment::scripts}"></div>
+
+	<script>
+
+
+
+		const backgroundFix = (bool) => {
+			const scrollingElement = () => {
+				const browser = window.navigator.userAgent.toLowerCase();
+				if ("scrollingElement" in document) return document.scrollingElement;
+				return document.documentElement;
+			};
+
+			const scrollY = bool
+				? scrollingElement().scrollTop
+				: parseInt(document.body.style.top || "0");
+
+			const fixedStyles = {
+				height: "100vh",
+				position: "fixed",
+				top: `${scrollY * -1}px`,
+				left: "0",
+				width: "100vw"
+			};
+
+			Object.keys(fixedStyles).forEach((key) => {
+				document.body.style[key] = bool ? fixedStyles[key] : "";
+			});
+
+			if (!bool) {
+
+				window.scrollTo(0, scrollY * -1);
+			}
+		};
+
+		// 変数定義
+		const CLASS = "-active";
+		let flg = false;
+		let accordionFlg = false;
+
+		let hamburger = document.getElementById("js-hamburger");
+		let focusTrap = document.getElementById("js-focus-trap");
+		let menu = document.querySelector(".js-nav-area");
+		let accordionTrigger = document.querySelectorAll(".js-sp-accordion-trigger");
+		let accordion = document.querySelectorAll(".js-sp-accordion");
+
+
+		// メニュー開閉制御
+		hamburger.addEventListener("click", (e) => { //ハンバーガーボタン選択
+			e.currentTarget.classList.toggle(CLASS);
+			menu.classList.toggle(CLASS);
+			if (flg) {// flgの状態で制御内容を切り替え
+				backgroundFix(false);
+				hamburger.setAttribute("aria-expanded", "false");
+				hamburger.focus();
+				flg = false;
+
+
+			} else {
+				backgroundFix(true);
+				hamburger.setAttribute("aria-expanded", "true");
+				flg = true;
+			}
+		});
+		window.addEventListener("keydown", () => {//escキー押下
+			if (event.key === "Escape") {
+				hamburger.classList.remove(CLASS);
+				menu.classList.remove(CLASS);
+
+				backgroundFix(false);
+				hamburger.focus();
+				hamburger.setAttribute("aria-expanded", "false");
+				flg = false;
+			}
+		});
+
+		// メニュー内アコーディオン制御
+		accordionTrigger.forEach((item) => {
+			item.addEventListener("click", (e) => {
+				e.currentTarget.classList.toggle(CLASS);
+				e.currentTarget.nextElementSibling.classList.toggle(CLASS);
+				if (accordionFlg) {
+					e.currentTarget.setAttribute("aria-expanded", "false");
+					accordionFlg = false;
+				} else {
+					e.currentTarget.setAttribute("aria-expanded", "true");
+					accordionFlg = true;
+				}
+			});
+
+		});
+
+		// フォーカストラップ制御
+		focusTrap.addEventListener("focus", (e) => {
+			hamburger.focus();
+		});
+
+
+		document.querySelectorAll(".site-index-object").forEach((element) => {
+			element.addEventListener('click', function () {
+				const parent = this;
+
+				let toggleBtn;
+				document.querySelectorAll(".site-toggle-btn").forEach((toggleBtnElem) => {
+					if (toggleBtnElem.dataset.toggle == parent.dataset.parent) {
+
+						toggleBtn = toggleBtnElem;
+					}
+
+				});
+
+
+
+				document.querySelectorAll(".site-index-object-child").forEach((childElem) => {
+					console.log("child" + childElem.dataset.child);
+					if (childElem.dataset.child == parent.dataset.parent) {
+						console.log("matchNumber");
+						if (childElem.style.display == "none") {
+							childElem.style.display = "block";
+							toggleBtn.innerText = "-";
+							childElem.scrollIntoView({behavior: 'smooth', block: 'center'});
+
+						} else {
+							childElem.style.display = "none";
+							toggleBtn.innerText = "+";
+
+						}
+					}
+				});
+			});
+		});
+
+
+		function tapIndexElem(e, hum) {
+
+			const indexValue = e.dataset.index;
+			console.log(indexValue);
+
+			if (hum == true) {
+				console.log("hum");
+				hamburger.classList.remove(CLASS);
+				menu.classList.remove(CLASS);
+
+				backgroundFix(false);
+				hamburger.focus();
+				hamburger.setAttribute("aria-expanded", "false");
+				flg = false;
+			}
+
+
+			let toggleBtn;
+			document.querySelectorAll(".site-toggle-btn").forEach((toggleBtnElem) => {
+				if (toggleBtnElem.dataset.toggle == indexValue) {
+
+					toggleBtn = toggleBtnElem;
+				} else {
+
+					toggleBtnElem.innerText = "+";
+				}
+
+			});
+			document.querySelectorAll(".site-index-object-child").forEach((childElem) => {
+				console.log("child" + childElem.dataset.child);
+				if (childElem.dataset.child == indexValue) {
+
+					childElem.style.display = "block";
+
+					childElem.scrollIntoView({behavior: 'smooth', block: 'center'});
+
+					toggleBtn.innerText = "-";
+
+
+
+				} else {
+					childElem.style.display = "none";
+
+				}
+			});
+		}
+
+	</script>
+
+</body>
+
+</html>

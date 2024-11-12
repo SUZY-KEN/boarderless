@@ -1,61 +1,1205 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" >
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-	<head>
-		<div th:replace="~{fragment::meta}"></div>
-		<div th:replace="~{fragment::styles}"></div>
-		<title>トップページ</title>
-		
-		<script type="module" th:src="@{/js/map.js}"></script>
-		
-		
-		
-	</head>
-	
-	<body>
-		
-		
-		
-		
-		<div class="boarderless-wrapper">
-			<div th:replace="~{fragment::header}"></div>
-			
-			<main>
-				
-				<div class="container boarderless-container">
-					<div>
-						住所の部分検索
-					</div>
-					
-					<div class="mb-5">
-					
-						<span th:each="category:${categoryList}">
-							
-							<button type="button"  th:text="${category.getName()}" name="categoryId" th:value="${category.getId()}"  class="btn btn-outline-secondary btn-sm  mb-2 category-btn" th:id="'categoryId'+${category.getId()}"></button>
-						</span>
-						
-					</div>
-					
-					<div id="wholeTable" class=" d-flex">
-						<div id="map-container">
-							<div id="map"></div>
-							
-						</div>
-						<div id="review-container" class="d-flex flex-column">
-							
+<head>
+	<div th:replace="~{fragment::meta}"></div>
+	<div th:replace="~{fragment::styles}"></div>
+	<title>boarderless</title>
+
+	<script type="module" th:src="@{/js/map.js}"></script>
+	<!--		<script type="module" th:src="@{/js/displayMin.js}"></script>-->
+
+
+</head>
+
+<body>
+
+
+
+
+	<div class="boarderless-wrapper">
+		<!--広告-->
+
+		<main>
+
+
+			<div class="boarderless-container">
+
+
+
+
+
+
+				<div id="wholeTable">
+					<div id="left-container" style="z-index:3;">
+
+						<div id="left-funcitons">
+							<div class="left-funcitons-sde-view">
+								<a class="funciton-item" id="get-current-pos-btn">
+									<div>
+										<img th:src="@{/image/current-pos-btn.svg}" alt="現在地" class="funciton-img">
+
+									</div>
+									<pclass="funciton-item-text">現在地</p>
+								</a>
+
+
+								<a th:href="@{/login}" class="funciton-item" sec:authorize="isAnonymous()">
+									<div>
+										<img th:src="@{/image/login-btn.svg}" alt="ログイン" class="funciton-img">
+									</div>
+									<p class="funciton-item-text">ログイン</p>
+								</a>
+
+								<a th:href="@{/signup}" class="funciton-item" sec:authorize="isAnonymous()">
+									<div>
+										<img th:src="@{/image/verify-btn.svg}" alt="新規登録" class="funciton-img">
+									</div>
+									<pclass="funciton-item-text">新規登録</p>
+								</a>
+
+
+
+
+
+								<a class="funciton-item" id="register-arleady-btn"
+									sec:authorize="hasRole('ROLE_GENERAL')">
+									<div>
+										<img src="/image/spot-register-btn.svg" alt="スポット登録" class="funciton-img">
+									</div>
+									<pclass="funciton-item-text">スポット登録</p>
+
+								</a>
+
+								<a class="funciton-item d-none" id="register-cancel-btn"
+									sec:authorize="hasRole('ROLE_GENERAL')">
+									<div>
+										<img src="/image/cancel-btn(178,178,178).svg" alt="登録キャンセル"
+											class="funciton-img">
+									</div>
+									<p class="funciton-item-text">登録キャンセル</p>
+								</a>
+
+
+
+								<a class="funciton-item" th:href="@{/message/show}"
+									sec:authorize="hasRole('ROLE_GENERAL')">
+									<div>
+										<img th:src="@{/image/message-btn(178,178,178).svg}" alt="お知らせ"
+											class="funciton-img">
+									</div>
+									<p class="funciton-item-text">お知らせ<span text="" id="already-read-badge"
+											class="badge bg-danger"></span></p>
+								</a>
+
+
+
+
+
+
+
+
+
+								<a class="funciton-item" id="approve-arleady-btn" sec:authorize="hasRole('ROLE_ADMIN')">
+									<div>
+										<img src="/image/approved-btn.svg" alt="スポット承認" class="funciton-img">
+									</div>
+									<pclass="funciton-item-text">スポット承認</p>
+
+								</a>
+
+								<a class="funciton-item d-none" id="approve-cancel-btn"
+									sec:authorize="hasRole('ROLE_ADMIN')">
+									<div>
+										<img src="/image/cancel-btn(178,178,178).svg" alt="承認キャンセル"
+											class="funciton-img">
+									</div>
+									<p class="funciton-item-text">承認キャンセル</p>
+								</a>
+
+								<a class="funciton-item" th:href="@{/admin/message/show}"
+									sec:authorize="hasRole('ROLE_ADMIN')">
+									<div>
+										<img th:src="@{/image/admin-message-btn.svg}" alt="管理者通知" class="funciton-img">
+									</div>
+									<p class="funciton-item-text">管理者通知<span text="" id="admin-already-read-badge"
+											class="badge bg-danger"></span></p>
+								</a>
+
+
+
+
+
+								<a class="funciton-item" th:href="@{/div>logout}"
+									onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+									sec:authorize="isAuthenticated()">
+									<div>
+										<img src="/image/logout-btn.svg" alt="ログアウト" class="funciton-img">
+									</div>
+									<p class="funciton-item-text">ログアウト</p>
+								</a>
+
+								<form class="d-none" id="logout-form" th:action="@{/logout}" method="post"></form>
+
+
+
+
+								<a class="funciton-item" th:href="@{/editor/show}">
+									<div>
+										<img th:src="@{/image/infomation-btn.svg}" alt="サイト情報" class="funciton-img">
+									</div>
+									<p class="funciton-item-text">サイト情報</p>
+								</a>
+
+
+							</div>
 						</div>
 
-						
+
+					</div>
+
+					<!--マップ描写-->
+					<div id="map-container">
+						<div id="map"></div>
+
+						<!--							ロゴ-->
+						<div id="left-infomation" class="index-logo-absolute">
+							<a th:href="@{/}"><img th:src="@{/image/boarderLessLogo.png}"
+									class="logo-absolute image-shadows"></a>
+
+						</div>
+
+						<!--							カテゴリー-->
+						<div class="index-category-absolute d-flex">
+
+							<div th:each="category:${categoryList}" class="mx-1 pb-1 mt-1 ">
+
+								<button type="button" th:text="${category.getName()}" name="categoryId"
+									th:value="${category.getId()}" class="btn btn-secondary btn-sm category-btn "
+									th:id="'categoryId'+${category.getId()}"></button>
+							</div>
+
+						</div>
+						<!--メッセージの表示-->
+						<div class="system-messasge" id="system-alert-message">
+
+							<div class="message-content">
+								<div th:if="${successMessage}" class="w-100" th:text="${successMessage}"
+									id="system-success-message" style="font-size: 1.2em;padding:10px;"> </div>
+
+								<div th:if="${errorMessage}" class="w-100" th:text="${errorMessage}"
+									id="system-error-message" style="font-size: 1.2em;padding:10px;"></div>
+								<div th:if="${param.loggedIn}" class=" w-100" id="login-info"
+									style="font-size: 1.2em;padding:10px;">
+									ログインしました。
+								</div>
+
+								<div th:if="${param.loggedOut}" class=" w-100" id="logout-info"
+									style="font-size: 1.2em; padding:10px;">
+									ログアウトしました。
+								</div>
+							</div>
+						</div>
+						<!--登録中の表示-->
+						<div style="display: none;" id="registering-now" class="now-animation">
+							<p style="margin:0;">Spot Registering...</p>
+						</div>
+
+						<div style="display: none;" id="approving-now" class="now-animation">
+							<p style="margin:0;">Spot Approving...</p>
+						</div>
+
+						<!--登録タブ-->
+						<div class="detail-container" id='register-spot-container' style="z-index:2;display: none;">
+							<div class="map-absolute-right-tab">
+								<div class="h-100 w-100 oranger-background" style="border-radius:5px 5px 0 0">
+									<div class="mt-1 d-flex" style="height:82px;">
+										<div class='w-100 d-flex justify-content-center'>
+											<p id="share-spot-name" class="text-center text-break m-auto fw-bold"
+												style="font-size: 1.5em;">スポット登録</p>
+										</div>
+										<div style='height:82px;position: absolute;top:0;right: 0;' class="m-1"><button
+												type="button" id="spot-register-dialog-dismiss"
+												class='resister-spot-detail-delete-btn btn-icon m-auto'
+												style='height:50px'><img class='w-100 h-100 '
+													src='./image/cancel-btn(black).svg' alt='キャンセル'></button></div>
+									</div>
+								</div>
+								<hr class='my-0'>
+
+								<div class="darker-background" style="border-radius:0 0 5px 5px ">
+									<div style="margin:0 0 20px 10px;">
+										<div class="d-flex flex-column p-4">
+											<form id="register-dialog-form" class="position-relative"
+												name="registerDialogForm">
+												<div>
+													<input type="hidden" name="spotUserId" value="">
+													<input type="hidden" name="spotLatPos" value="">
+													<input type="hidden" name="spotLngPos" value="">
+												</div>
+
+												<div class="form-group row mb-3">
+													<div id="errorName" class="row mb-1 text-danger"></div>
+													<div class="col-md-3">
+														<label class="col-form-label text-md-left fw-bold">スポット名</label>
+													</div>
+													<div class="col-md-9">
+														<input type="text" name="spotName"
+															class="form-control bg-transparent border border-secondary"
+															maxlength="50" placeholder="50文字以内での記入" autofocus>
+													</div>
+												</div>
+
+												<div id="errorImage" class="row mb-1 text-danger"></div>
+												<div class="form-group row mb-3 position-relative">
+													<div class="col-md-3"></div>
+													<div class="col-md-9">
+														<label for="imageFile"
+															class="col-form-label fw-bold custom-upload"
+															id="none-image-label"
+															style="display:flex;"><span>画像を挿入してください</span></label>
+														<div id="imagePreview"
+															class="form-control bg-transparent border border-secondary custom-upload"
+															style="display:none;"></div>
+														<input type="file"
+															class="form-control bg-transparent border border-secondary"
+															id="imageFile" style="visibility: hidden;height:0px"
+															name="spotImage">
+														<!--！！！！！プラスボタンを画像横に作って、クリックしたら4つ画像を格納できるダイアログに移行する-->
+													</div>
+
+												</div>
+
+
+												<div class="form-group row mb-3">
+
+													<div id="errorDescription" class="row mb-1 text-danger"></div>
+													<div class="col-md-3">
+														<label class="col-form-label text-md-left fw-bold">説明</label>
+													</div>
+
+													<div class="col-md-9">
+														<textarea name="spotDescription" maxlength="100"
+															class="form-control bg-transparent border border-secondary"
+															placeholder="100文字以内での記入" cols="30" rows="3"></textarea>
+													</div>
+												</div>
+
+												<div class="form-group row mb-3">
+													<div id="errorSpotIsPrice" class="row mb-1 text-danger"></div>
+													<div class="col-md-3">
+														<label>料金</label>
+													</div>
+
+													<div class="col-md-9 d-flex">
+														<div>
+															<input type="radio" name="spotIsPrice" value="on"
+																id="spot-is-not-price-radio-btn"
+																onclick="setPriceAmountInput(false)">
+															<label>なし</label>
+														</div>
+														<div class="mx-4">
+															<input type="radio" name="spotIsPrice" value="off"
+																id="spot-is-price-amount-radio-btn"
+																onclick="setPriceAmountInput(true)">
+															<label>あり</label>
+														</div>
+													</div>
+												</div>
+												<div class="d-none form-group row mb-3" id="spot-is-price-amount-div">
+													<div id="errorSpotPriceAmount" class="row mb-1 text-danger"></div>
+													<div class="col-md-3">
+														<label>金額</label>
+													</div>
+													<div class="col-md-9">
+														<input type="number" name="spotPriceAmount"
+															id="spot-is-price-amount-input"
+															class="form-control bg-transparent border border-secondary">
+
+													</div>
+												</div>
+
+												<div class="form-group row mb-3">
+													<div class="col-md-3">
+														<label>カテゴリー</label>
+													</div>
+													<div class="col-md-9">
+
+														<select name="spotCategory"
+															class="form-select bg-transparent border border-secondary"
+															style="color:#f5f5f5;">
+															<option value="" class="category-option">なし</option>
+															<div th:each="category:${categoryList}">
+																<option th:text="${category.getName()}"
+																	th:value="${category.getId()}"
+																	class="category-option">
+															</div>
+														</select>
+													</div>
+												</div>
+
+
+												<div class="d-flex 	col-md-12 w-100">
+
+													<div class="outer-btn-boarderless w-100 ">
+														<button id="register-spot-confirm-btn"
+															class="w-100 btn-boarderless" type="button">登録</button>
+													</div>
+
+													<div class="outer-btn-boarderless w-100 ms-2 ">
+														<button id="register-cancel-confirm-btn"
+															class="w-100 btn-boarderless" type="reset">キャンセル</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!--							詳細タブ-->
+						<div class="detail-container" id="review-detail-container">
+							<div class='review-detail-card map-absolute-right-tab'>
+								<div class='d-flex m-1 header-review-detail'>
+									<div style='height:50px;visibility: hidden;'>
+										<button onclick='' class='review-detail-delete-btn btn-icon general-cancel-btn'>
+											<img class='w-100 h-100 ' src='./image/cancel-btn(178,178,178).svg'
+												alt='キャンセル'>
+										</button>
+									</div>
+
+									<div class='w-100 d-flex justify-content-center '>
+										<p class='text-center text-break m-auto header-font-size'
+											id='review-header-text'></p>
+									</div>
+									<div style='height:50px'>
+										<button onclick='' class='review-detail-delete-btn btn-icon general-cancel-btn'
+											id='review-detail-delete-btn'>
+											<img class='w-100 h-100 ' src='./image/cancel-btn(178,178,178).svg'
+												alt='キャンセル'>
+										</button>
+									</div>
+								</div>
+								<div role='tablist' class='review-detail-tab-group'>
+									<div class='review-detail-presentation' role='presentation'>
+										<button role='tab' aria-controls='panel01' aria-selected='true'
+											class='review-detail-tab'>概要</button>
+									</div>
+									<div class='review-detail-presentation' role='presentation'>
+										<button role='tab' aria-controls='panel02' aria-selected='false'
+											class='review-detail-tab'>レビュー</button>
+									</div>
+								</div>
+								<hr class='my-0'>
+								<div class='panel-group'>
+									<div class='panel  scroll-bar' id='panel-top' role='tabpanel' aria-hidden='false'>
+										<div>
+											<img src='' class='review-detail-image' id="review-detail-image">
+										</div>
+										<div class='d-flex  my-2 mx-4' id='review-function-tab'>
+											<a class='funciton-item' id='spot-mapset-btn'>
+												<div>
+													<img src='/image/spot-btn.svg' alt='スポット位置へ' class='funciton-img'
+														id='spot-mapset-img'>
+												</div>
+												<p class='mb-0' id='spot-mapset-text'>アンカー</p>
+											</a>
+											<a class='funciton-item ms-4 ' id='share-btn'>
+												<div>
+													<img src='/image/share-btn.svg' alt='共有' class='funciton-img'
+														id='share-img'>
+												</div>
+												<p class='mb-0' id='share-text'>共有</p>
+											</a>
+											<a class='funciton-item ms-4 ' id='favorite-btn'
+												sec:authorize="hasRole('ROLE_GENERAL')">
+												<div>
+													<img src='/image/star-btn.svg' alt='お気に入り' class='funciton-img'
+														id='favorite-img'>
+												</div>
+												<p class='mb-0' id='favorite-text'>お気に入り</p>
+											</a>
+											<a class='funciton-item ms-4 ' id='report-btn'
+												sec:authorize="hasRole('ROLE_GENERAL')">
+												<div>
+													<img src='/image/report-btn.svg' alt='通報' class='funciton-img'
+														id='report-img'>
+												</div>
+												<p class='mb-0' id='report-text'>通報</p>
+											</a>
+										</div>
+										<hr class='my-0'>
+										<div class='mt-2 mb-4 mx-4'>
+											<div class='text-warning' id="review-show-star"><span class='mx-2'
+													id="review-show-evalues"></span></div>
+											<div><span>料金</span><span id="review-show-price" class='mx-2'></span></div>
+											<div class='my-2'>
+												<div class='text-break' id="review-show-description"> </div>
+											</div>
+
+											<div class='mb-3'><span>作成者:</span><span id="review-show-user-name"
+													class='mx-2'></span></div>
+											<div><span class='category-outline p-1' id="review-show-category"></span>
+											</div>
+
+
+										</div>
+										<div id='spot-approve-btn-container'>
+											<div class='mt-2 my-4 mx-4 d-flex justify-content-between'>
+												<div class='outer-btn-boarderless w-100 '>
+													<button id='spot-approve-confirm-btn' class='w-100 btn-boarderless'
+														type='button'>承認</button>
+												</div>
+
+												<div class='outer-btn-boarderless w-100 ms-2 '>
+													<button id='spot-approve-cancel-confirm-btn'
+														class='w-100 btn-boarderless' type='button'>拒否</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class='panel scroll-bar' role='tabpanel' aria-hidden='true'>
+										<div id='panel-review-show-statics'></div>
+										<div sec:authorize="hasRole('ROLE_ADMIN')" id="panel-review-show-admin"></div>
+										<div id='panel-review-show-user'></div>
+										
+										<div id='panel-review-show'></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+
+					<!--レビュー一覧-->
+					<div class=" right-container " id="right-container">
+						<div id="swipe-right-container">
+							<div>
+								<img src='/image/swipe-up-btn.png' alt='スワイプアップ' id="swipe-up-img">
+
+							</div>
+
+
+							<img src='/image/swipe-down-btn.png' alt='スワイプダウン' id="swipe-down-img" style="display:none">
+							<div>
+							</div>
+						</div>
+						<div class="review-container-all">
+							<div id="review-container-header">
+								<div class='d-flex justify-content-between mt-1 mx-2' id="review-sort-header">
+									<div class='function-cluster-right'>
+										<a class='funciton-item mx-1' id='sort-btn'>
+											<div id="sort-img">
+												<img class='funciton-img-right' src='/image/sort-btn.svg' alt='ソート'>
+											</div>
+											<p class='mb-0' id='sort-text'>投稿順</p>
+										</a>
+
+										<div class="funciton-item mx-1" sec:authorize="hasRole('ROLE_GENERAL')"
+											id='sort-blank' style="visibility: hidden">
+											<img src="/image/star-btn.svg" alt="ブランク" class="funciton-img-right">
+										</div>
+										
+										<a class='funciton-item mx-1' id='report-sort-btn'sec:authorize="hasRole('ROLE_ADMIN')">
+											<div 
+												id='report-sort-img'>
+												<img src="/image/report-btn.svg" alt="通報箱" class="funciton-img-right">
+											</div>
+											<p class='mb-0' id='report-sort-text'>通報箱</p>
+										</a>	
+									</div>
+
+									<div>
+										<p class="text-center m-auto p-3">スポット一覧</p>
+									</div>
+									<div class='function-cluster-right'>
+
+
+										<a class="funciton-item mx-1" id="fav-sort-btn"
+											sec:authorize="isAuthenticated()">
+											<div id="fav-sort-img">
+												<img src="/image/star-btn.svg" alt="お気に入り" class="funciton-img-right">
+											</div>
+											<p class='mb-0' id='fav-sort-text'>お気に入り</p>
+
+										</a>
+
+										<div class="funciton-item mx-1" sec:authorize="isAnonymous()"
+											style="visibility: hidden">
+											<img src="/image/star-btn.svg" alt="ブランク" class="funciton-img-right">
+										</div>
+
+										<a class="funciton-item mx-1" id="myspot-sort-btn"
+											sec:authorize="isAuthenticated()">
+											<div id="myspot-sort-img">
+												<img src="/image/myspot-btn.svg" alt="マイスポット"
+													class="funciton-img-right">
+											</div>
+											<p class='mb-0' id='myspot-sort-text'>マイスポット</p>
+
+										</a>
+									</div>
+
+								</div>
+							</div>
+							<div id="review-container" class="scroll-bar d-flex flex-column review-card-padding"
+								style="flex:1;"> 
+							</div>
+						</div>
+
+
+						<!--登録タブ-->
+						<div class="detail-container" id='register-spot-container-min' style="z-index:2;display: none;">
+							<div class="map-absolute-right-tab">
+
+								<div class='d-flex  header-review-detail'>
+									<div class='w-100 d-flex justify-content-center '>
+										<p class='text-center text-break m-0 header-font-size' id='share-spot-name'>
+											スポット登録</p>
+									</div>
+									<div class="header-review-detail-btn-style">
+										<button type="button" id="spot-register-dialog-dismiss"
+											class='resister-spot-detail-delete-btn btn-icon m-auto general-cancel-btn'>
+											<img class='w-100 h-100 ' src='./image/cancel-btn(178,178,178).svg'
+												alt='キャンセル'>
+										</button>
+									</div>
+								</div>
+
+
+							
+								<hr class='my-0'>
+
+								<div class="darker-background register-container scroll-bar"
+									style="border-radius:0 0 5px 5px ">
+									<div>
+										<div class="d-flex flex-column p-4">
+											<form id="register-dialog-form" class="position-relative"
+												name="registerDialogForm">
+												<div>
+													<input type="hidden" name="spotUserId" value="">
+													<input type="hidden" name="spotLatPos" value="">
+													<input type="hidden" name="spotLngPos" value="">
+												</div>
+
+												<div class="form-group row mb-3">
+
+													<div class="col-md-3">
+														<label class="col-form-label text-md-left fw-bold">スポット名</label>
+														<div id="errorName" class="text-danger"></div>
+													</div>
+													<div class="col-md-9">
+														<input type="text" name="spotName"
+															class="form-control bg-transparent border border-secondary"
+															maxlength="50" placeholder="50文字以内での記入" autofocus>
+													</div>
+												</div>
+
+												<div id="errorImage" class=" text-danger"></div>
+												<div class="form-group row mb-3 position-relative">
+													<div class="col-md-3"></div>
+													<div class="col-md-9">
+														<label for="imageFile"
+															class="col-form-label fw-bold custom-upload"
+															id="none-image-label"
+															style="display:flex;"><span>画像を挿入してください</span></label>
+														<div id="imagePreview"
+															class="form-control bg-transparent border border-secondary custom-upload"
+															style="display:none;"></div>
+														<input type="file"
+															class="form-control bg-transparent border border-secondary"
+															id="imageFile" style="visibility: hidden;height:0px"
+															name="spotImage">
+														<!--！！！！！プラスボタンを画像横に作って、クリックしたら4つ画像を格納できるダイアログに移行する-->
+													</div>
+
+												</div>
+
+
+												<div class="form-group row mb-3">
+
+													<div class="col-md-3">
+														<label class="col-form-label text-md-left fw-bold">説明</label>
+														<div id="errorDescription" class="text-danger"></div>
+
+													</div>
+
+													<div class="col-md-9">
+														<textarea name="spotDescription" maxlength="100"
+															class="form-control bg-transparent border border-secondary"
+															placeholder="100文字以内での記入" cols="30" rows="3"></textarea>
+													</div>
+												</div>
+
+												<div class="form-group row mb-3">
+
+													<div class="col-md-3">
+														<label>料金</label>
+														<div id="errorSpotIsPrice" class="text-danger"></div>
+													</div>
+
+													<div class="col-md-9 d-flex">
+														<div>
+															<input type="radio" name="spotIsPrice" value="on"
+																id="spot-is-not-price-radio-btn"
+																onclick="setPriceAmountInput(false)">
+															<label>なし</label>
+														</div>
+														<div class="mx-4">
+															<input type="radio" name="spotIsPrice" value="off"
+																id="spot-is-price-amount-radio-btn"
+																onclick="setPriceAmountInput(true)">
+															<label>あり</label>
+														</div>
+													</div>
+												</div>
+												<div class="d-none form-group row mb-3" id="spot-is-price-amount-div">
+
+													<div class="col-md-3">
+														<label>金額</label>
+														<div id="errorSpotPriceAmount" class="text-danger"></div>
+													</div>
+													<div class="col-md-9">
+														<input type="number" name="spotPriceAmount"
+															id="spot-is-price-amount-input"
+															class="form-control bg-transparent border border-secondary">
+
+													</div>
+												</div>
+
+												<div class="form-group row mb-3">
+													<div class="col-md-3">
+														<label>カテゴリー</label>
+													</div>
+													<div class="col-md-9">
+
+														<select name="spotCategory"
+															class="form-select bg-transparent border border-secondary"
+															style="color:#f5f5f5;">
+															<option value="" class="category-option">なし</option>
+															<div th:each="category:${categoryList}">
+																<option th:text="${category.getName()}"
+																	th:value="${category.getId()}"
+																	class="category-option">
+															</div>
+														</select>
+													</div>
+												</div>
+
+
+												<div class="d-flex 	col-md-12 w-100">
+
+													<div class="outer-btn-boarderless w-100 ">
+														<button id="register-spot-confirm-btn"
+															class="w-100 btn-boarderless" type="button">登録</button>
+													</div>
+
+													<div class="outer-btn-boarderless w-100 ms-2 ">
+														<button id="register-cancel-confirm-btn"
+															class="w-100 btn-boarderless" type="reset">キャンセル</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!--							詳細タブ-->
+						<div class="detail-container" id="review-detail-container-min">
+							<div class='review-detail-card map-absolute-right-tab'>
+								<div class='d-flex  header-review-detail'>
+									<div class="header-review-detail-btn-style" style="visibility: hidden;">
+										<button onclick='' class='review-detail-delete-btn btn-icon general-cancel-btn'>
+											<img class='w-100 h-100 ' src='./image/cancel-btn(178,178,178).svg'
+												alt='キャンセル'>
+										</button>
+									</div>
+
+
+									<div class='w-100 d-flex justify-content-center '>
+										<p class='text-center text-break m-0 header-font-size' id='review-header-text'>
+										</p>
+									</div>
+									<div class="header-review-detail-btn-style">
+										<button onclick='' class='review-detail-delete-btn btn-icon general-cancel-btn'
+											id='review-detail-delete-btn'>
+											<img class='w-100 h-100 ' src='./image/cancel-btn(178,178,178).svg'
+												alt='キャンセル'>
+										</button>
+									</div>
+								</div>
+								<div role='tablist' class='review-detail-tab-group'>
+									<div class='review-detail-presentation' role='presentation'>
+										<button role='tab' aria-controls='panel01' aria-selected='true'
+											class='review-detail-tab'>概要</button>
+									</div>
+									<div class='review-detail-presentation' role='presentation'>
+										<button role='tab' aria-controls='panel02' aria-selected='false'
+											class='review-detail-tab'>レビュー</button>
+									</div>
+								</div>
+								<hr class='my-0'>
+								<div class='panel-group' id="panelGroup">
+									<div class='panel  scroll-bar' id='panel-top' role='tabpanel' aria-hidden='false'>
+										<div>
+											<img src='' class='review-detail-image' id="review-detail-image">
+										</div>
+										<div class='d-flex  my-2 mx-4' id='review-function-tab'>
+											<a class='funciton-item' id='spot-mapset-btn'>
+												<div>
+													<img src='/image/spot-btn.svg' alt='スポット位置へ' class='funciton-img'
+														id='spot-mapset-img'>
+												</div>
+												<p class='mb-0' id='spot-mapset-text'>アンカー</p>
+											</a>
+											<a class='funciton-item ms-4 ' id='share-btn'>
+												<div>
+													<img src='/image/share-btn.svg' alt='共有' class='funciton-img'
+														id='share-img'>
+												</div>
+												<p class='mb-0' id='share-text'>共有</p>
+											</a>
+											<a class='funciton-item ms-4 ' id='favorite-btn'
+												sec:authorize="hasRole('ROLE_GENERAL')">
+												<div>
+													<img src='/image/star-btn.svg' alt='お気に入り' class='funciton-img'
+														id='favorite-img'>
+												</div>
+												<p class='mb-0' id='favorite-text'>お気に入り</p>
+											</a>
+											<a class='funciton-item ms-4 ' id='report-btn'
+												sec:authorize="hasRole('ROLE_GENERAL')">
+												<div>
+													<img src='/image/report-btn.svg' alt='通報' class='funciton-img'
+														id='report-img'>
+												</div>
+												<p class='mb-0' id='report-text'>通報</p>
+											</a>
+										</div>
+										<hr class='my-0'>
+										<div class='mt-2 mb-4 mx-4'>
+											<div class='text-warning' id="review-show-star"><span class='mx-2'
+													id="review-show-evalues"></span></div>
+											<div><span>料金</span><span id="review-show-price" class='mx-2'></span></div>
+											<div class='my-2'>
+												<div class='text-break' id="review-show-description"> </div>
+											</div>
+											<div class='mb-3'><span>作成者:</span><span id="review-show-user-name"
+													class='mx-2'></span></div>
+											<div><span class='category-outline p-1' id="review-show-category"></span>
+											</div>
+
+										</div>
+										<div id='spot-approve-btn-container'>
+											<div class='mt-2 my-4 mx-4 d-flex justify-content-between'>
+												<div class='outer-btn-boarderless w-100 '>
+													<button id='spot-approve-confirm-btn' class='w-100 btn-boarderless'
+														type='button'>承認</button>
+												</div>
+
+												<div class='outer-btn-boarderless w-100 ms-2 '>
+													<button id='spot-approve-cancel-confirm-btn'
+														class='w-100 btn-boarderless' type='button'>拒否</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class='panel scroll-bar' role='tabpanel' aria-hidden='true'>
+										<div id='panel-review-show-statics'></div>
+										<div sec:authorize="hasRole('ROLE_ADMIN')" id="panel-review-show-admin"></div>
+										<div id='panel-review-show-user'></div>
+										<div id='panel-review-show'></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+
+			<!--レビュー登録ダイアログ		-->
+			<dialog id="review-register-dialog" class="dialog-map">
+				<div class="my-1 d-flex " style="margin:10px 10px 20px 10px;">
+					<div class='w-100 d-flex justify-content-center'>
+						<p id="review-spot-name" class="text-center text-break m-auto" text=""></p>
+					</div>
+					<div style='height:50px'><button type="button" id="review-dialog-dismiss"
+							class='review-detail-delete-btn btn-icon ' style='height:50px'><img class='w-100 h-100 '
+								src='./image/cancel-btn(178,178,178).svg' alt='キャンセル'></button></div>
+				</div>
+
+
+				<hr class='my-0'>
+				<div class="darker-background">
+					<div style="margin:0 10px 20px 10px;">
+						<div class="d-flex flex-column">
+
+							<form id="review-register-dialog-form" method="dialog" name="reviewRegisterDialogForm"
+								class="mt-3">
+								<div>
+									<input type="hidden" name="reviewId" value="">
+									<input type="hidden" name="reviewUserId" value="">
+									<input type="hidden" name="reviewSpotId" value="">
+								</div>
+
+								<div class="form-group row mb-3 w-100">
+									<div class="col-md-2">
+										<label>評価</label>
+									</div>
+									<div class="col-md-6">
+										<select name="reviewEvalues"
+											class="form-select text-warning bg-transparent border border-secondary"
+											autofocus>
+											<option value="0" class="text-warning">&#9734;&#9734;&#9734;&#9734;&#9734;
+											</option>
+											<option value="1" class="text-warning">&#9733;&#9734;&#9734;&#9734;&#9734;
+											</option>
+											<option value="2" class="text-warning">&#9733;&#9733;&#9734;&#9734;&#9734;
+											</option>
+											<option value="3" class="text-warning">&#9733;&#9733;&#9733;&#9734;&#9734;
+											</option>
+											<option value="4" class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9734;
+											</option>
+											<option value="5" class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;
+											</option>
+
+										</select>
+									</div>
+								</div>
+
+
+								<div class="form-group row mb-3 w-100">
+									<div class="col-md-2">
+										<label>レビュー</label>
+									</div>
+									<div class="col-md-10">
+										<textarea maxlength="300" placeholder="300文字以内での記入" name="reviewContents"
+											cols="50" rows="8"
+											class="form-control bg-transparent	border border-secondary"></textarea>
+									</div>
+								</div>
+
+								<div class="d-flex 	col-md-12 w-100">
+
+									<div class="outer-btn-boarderless w-100 ">
+										<button id="review-register-confirm-btn" class="w-100 btn-boarderless"
+											type="submit">登録</button>
+									</div>
+
+									<div class="outer-btn-boarderless w-100 ms-2 ">
+										<button id="review-register-cancel-confirm-btn" class="w-100 btn-boarderless"
+											type="reset">キャンセル</button>
+									</div>
+								</div>
+
+							</form>
+						</div>
+
 					</div>
 				</div>
-			</main>
 
-			<div th:replace="~{fragment::footer}"></div>
+			</dialog>
 
-		</div>
+			<!--シェアダイアログ-->
+			<dialog id="share-dialog" class="dialog-map">
+				<div>
+
+					<div class="d-flex flex-column">
+						<div class="my-1 d-flex" style="margin:0 10px 20px 10px;">
+							<div class='w-100 d-flex justify-content-center'>
+								<p id="share-spot-name" class="text-center text-break m-auto" text=""></p>
+							</div>
+							<div style='height:50px'><button type="button" id="share-dialog-dismiss"
+									class='review-detail-delete-btn btn-icon ' style='height:50px'><img
+										class='w-100 h-100 ' src='./image/cancel-btn(178,178,178).svg'
+										alt='キャンセル'></button></div>
+						</div>
+						<hr class='my-0'>
+
+						<div class="darker-background">
+
+							<div id='spot-url-controller' class='d-flex flex-column'
+								style="margin:10px 10px 20px 10px;">
+								<div class="d-flex  mb-1 justify-content-around">
+									<button type='button' id='line-share-btn' class='btn-icon' style='height:70px'><img
+											class='w-100 h-100 ' src='./image/line-btn.svg' alt='LINE共有'></button>
+									<button type='button' id='twitter-share-btn' class='btn-icon'
+										style='height:70px'><img class='w-100 h-100 ' src='./image/twitter-btn.svg'
+											alt='X共有'></button>
+									<button type='button' id='facebook-share-btn' class='btn-icon'
+										style='height:70px'><img class='w-100 h-100 ' src='./image/facebook-btn.svg'
+											alt='FaceBook共有'></button>
+
+								</div>
+								<hr class="my-0">
+								<div class="form-group d-flex mt-2">
+									<input type='text' id='spot-url' value="" readonly style='height:30px'
+										class="form-control bg-transparent border border-secondaryl">
+									<div><button type='button' id='cory-url-btn' class='btn-icon'
+											style='height:30px'><img class='w-100 h-100 '
+												src='./image/copy-btn(178,178,178).svg' alt='URLコピー'></button></div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</dialog>
+
+			<!--コピー後の表示-->
+			<div id="copied-url-block" class="fadein"
+				style="display:none;position: fixed;width:100%;height:200;bottom:0;margin:0 auto;z-index:1001; justify-content: center;">
+				<div style="background-color: black; padding: 25px 90px;">
+					クリップボードにコピーしました
+
+				</div>
+
+			</div>
+
+			<!--通報ダイアログ	-->
+			<dialog id="report-register-dialog" class="dialog-map">
+				<div class="my-1 d-flex " style="margin:10px 10px 20px 10px;">
+					<div class='w-100 d-flex justify-content-center' style='height:50px'>
+						<p id="report-spot-name" class="text-center text-break m-auto" text=""></p>
+					</div>
+					<!--										<div style='height:50px'><button type="button" id="report-dialog-dismiss" class='review-detail-delete-btn btn-icon ' style='height:50px'><img class='w-100 h-100 ' src='./image/cancel-btn(178,178,178).svg' alt='キャンセル'></button></div>-->
+				</div>
+
+
+				<hr class='my-0'>
+				<div class="darker-background">
+					<div style="margin:0 10px 20px 10px;">
+						<div class="d-flex flex-column">
+
+							<form id="report-register-dialog-form" method="dialog" name="reportRegisterDialogForm"
+								class="mt-3">
+								<div>
+									<input type="hidden" name="reportSpotId" value="">
+
+								</div>
+
+
+
+								<div class="row mb-1 text-danger">
+									<div class="col-md-3"></div>
+									<div class="col-md-9" id="errorReportContents"></div>
+								</div>
+								<div class="form-group row mb-3 w-100">
+
+									<div class="col-md-3">
+										<label>通報内容</label>
+									</div>
+									<div class="col-md-9">
+										<textarea maxlength="300" placeholder="300文字以内で記入してください。（例）私有地なのでスポットを削除してほしい"
+											name="reportContents" cols="50" rows="8"
+											class="form-control bg-transparent	border border-secondary"
+											id="reportContents" autofocus></textarea>
+									</div>
+								</div>
+
+								<div class="d-flex 	col-md-12 w-100">
+
+									<div class="outer-btn-boarderless w-100 ">
+										<button id="report-register-confirm-btn" class="w-100 btn-boarderless"
+											type="button">申請</button>
+									</div>
+
+									<div class="outer-btn-boarderless w-100 ms-2 ">
+										<button id="report-register-cancel-confirm-btn" class="w-100 btn-boarderless"
+											type="reset">キャンセル</button>
+									</div>
+								</div>
+
+							</form>
+						</div>
+
+					</div>
+				</div>
+
+			</dialog>
+
+
+			<!--admin-->
+			<!--スポット拒否理由ダイアログ-->
+			<dialog id="not-allowed-spot-rejected-dialog" class="dialog-map">
+				<div class="d-flex flex-column">
+					<div class="my-1 d-flex" style="margin:0 10px 20px 10px;">
+						<div class='w-100 d-flex justify-content-center' style='height:50px'>
+							<p class="text-center text-break m-auto">スポット申請拒否フォーム</p>
+						</div>
+					</div>
+					<hr class='my-0'>
+
+
+					<div class="darker-background">
+						<div style="margin:10px 10px 20px 10px;">
+							<form id="not-allowed-spot-rejected-form" method="dialog" name="notAllowedSpotRejectedForm">
+								<div>
+
+									<input type="hidden" name="rejectedSpotId" value="">
+								</div>
+
+								<div class="form-group row mb-3 w-100">
+									<div class="col-md-3">
+										<label>スポット名</label>
+									</div>
+									<div class="col-md-9">
+										<p id="not-allowed-spot-name" class="text-break m-auto" text=""></p>
+									</div>
+								</div>
+
+								<div class="form-group row mb-3 w-100">
+									<div class="col-md-3">
+										<label>内容</label>
+									</div>
+									<div class="col-md-9">
+										<textarea maxlength="300" placeholder="300文字以内での記入" name="rejectedContents"
+											cols="50" rows="8"
+											class="form-control bg-transparent	border border-secondary"
+											required></textarea>
+									</div>
+								</div>
+
+								<div class="col-md-12 w-100 p-1">
+									<div class="d-flex w-100">
+										<div class="outer-btn-boarderless w-100 ">
+											<button id="not-allowed-spot-rejected-confirm-btn"
+												class="w-100 btn-boarderless" type="submit">送信</button>
+										</div>
+
+										<div class="outer-btn-boarderless w-100 ms-2 ">
+											<button id="not-allowed-spot-rejected-cancel-btn"
+												class="w-100 btn-boarderless " type="reset">キャンセル</button>
+										</div>
+									</div>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+
+
+			</dialog>
+
+		</main>
+
+
+
+	</div>
+
+
+	<div th:replace="~{fragment::scripts}"></div>
+
+	<script>
+		//ダイアログの価格表示
+		function setPriceAmountInput(setting) {
+			var option = setting;
+			const spotIsPriceAmountDiv = document.getElementById('spot-is-price-amount-div');
+			const spotIsPriceAmountInput = document.getElementById('spot-is-price-amount-input');
+
+
+			if (setting) {
+				spotIsPriceAmountDiv.classList.remove('d-none');
+				spotIsPriceAmountInput.setAttribute('required', '');
+			} else {
+				spotIsPriceAmountDiv.classList.add('d-none');
+				spotIsPriceAmountInput.removeAttribute('required');
+
+			}
+
+		};
+
+		//ユーザーのお知らせの新着があるか
+		document.addEventListener("DOMContentLoaded", function () {
+			const XHR = new XMLHttpRequest();
+			XHR.open('GET', '/message/user/show/badge', true);
+			XHR.responseType = 'json';
+			XHR.send();
+			XHR.onload = function () {
+				if (XHR.status === 200) {
+					const count = this.response;
+					console.log("fragment.aleradyBadge" + count);
+					if (document.getElementById("already-read-badge") != null) {
+						if (count != 0) {
+							document.getElementById("already-read-badge").innerText = count;
+						} else {
+							document.getElementById("already-read-badge").innerText = "";
+						}
+					}
+				}
+			};
+
+
+		});
+
+
+		//管理者のお知らせの新着があるか
+		document.addEventListener("DOMContentLoaded", function () {
+			const XHR = new XMLHttpRequest();
+			XHR.open('GET', '/admin/message/show/badge', true);
+			XHR.responseType = 'json';
+			XHR.send();
+			XHR.onload = function () {
+				if (XHR.status === 200) {
+					const count = this.response;
+					console.log("fragment.adminAleradyBadge" + count);
+					if (document.getElementById("admin-already-read-badge") != null) {
+						if (count != 0) {
+							document.getElementById("admin-already-read-badge").innerText = count;
+						} else {
+							document.getElementById("admin-already-read-badge").innerText = "";
+						}
+					}
+				}
+			};
+
+
+		});
+
+		//イメージのキャンセル
+		function cancelImage() {
+
+			const imagePreview = document.getElementById('imagePreview');
+			const noneImageLabel = document.getElementById('none-image-label');
+			noneImageLabel.style.display = 'flex';
+			imagePreview.style.display = 'none';
+		}
+
+
+
+
+
+
+	</script>
 	
-		
-		<div th:replace="~{fragment::scripts}"></div>
-		
-	</body>
+	<script th:inline="javascript">
+		const googleMapsApiKey = /*[[${googleMapsApiKey}]]*/"googleMapsApiKey";
+		(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});
+		var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));
+		e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);
+		a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;
+		a.onerror=()=>h=n(Error(p+" could not load."));
+		a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));
+		d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({key:googleMapsApiKey, v: "beta"});
+				
+	</script>
+
+</body>
+
 </html>

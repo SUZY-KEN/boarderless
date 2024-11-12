@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+	<head>
+		<div th:replace="~{fragment::meta}"></div>
+		<div th:replace="~{fragment::styles}"></div>
+		<title>お知らせ</title>
+		
+		
+		
+		
+		
+	</head>
+	
+	<body>
+		
+		
+		
+		
+		<div class="boarderless-wrapper2">
+			<header>
+			
+				<div class="header-content" style="position: fixed;top: 0;left:0;">
+	
+					<a sec:authorize="isAnonymous()" th:href="@{/}"><img th:src="@{/image/boarderLessLogo.png}"
+							class="logo"></a>
+					<a sec:authorize="hasRole('ROLE_GENERAL')" th:href="@{/}"><img th:src="@{/image/boarderLessLogo.png}"
+							class="logo"></a>
+					<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><img th:src="@{/image/boarderLessLogo.png}"
+							class="logo"></a>
+	
+				
+					<hr class="my-0">
+			</header>
+			
+			<main>
+				<div class="header-margin"></div>
+				<div class="gradiention-container"></div>
+				<div class="sub-boarderless-container perminent-height">
+				<div class="container">
+					
+					
+	<!--パンくず	-->
+					<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="py-2">
+			           <ol class="breadcrumb mb-0">                        
+			               <li class="breadcrumb-item"><a class="white-a"th:href="@{/}">ホーム</a></liclass="breadcrumb-item">
+			               <li class="breadcrumb-item" aria-current="page">お知らせ</li>
+			           </ol>
+			       </nav>     
+					
+				   
+				   <h1 class="mb-4 text-center"	th:text="お知らせ"></h1>
+				  
+				   
+				   <div class="row mb-4">
+						<div class="mb-4">
+							<a th:href="@{/message/change/read/all}" class="read-message-a white-a">すべて既読にする</a>
+							<a th:href="@{/message/delete/read/all}" style="margin-left: 20px;" class="read-message-a white-a">既読を削除する</a>
+						</div>		
+
+						<div th:if="${MessageFromAdminPage.isEmpty()}" class="mx-auto my-4">
+							<p class="mb-4 text-center">お知らせはありません</p>
+						</div>
+			            <div th:unless="${MessageFromAdminPage.isEmpty()}">
+							
+								<div th:each="message : ${MessageFromAdminPage}" class="mb-2">
+				                   <div class="col mx-auto mb-2">
+										<a href="#" data-bs-toggle="modal"th:id="${'message'+message.getId()}" th:data-bs-target="${'#detailModal'+message.getId()}" th:data-parent="${message.getId()}" onclick="switchCircle(this)">
+						                   
+											
+											<div th:unless="${message.getAlreadyRead()}" class="card unread-message-div"  th:data-message-id="${message.getId()}">
+						                        <div class="px-2 												message-card-conents-outer" >
+												
+						                            <div class="message-card" >
+														
+						                                <div class="card-title">
+															<div class="circle" th:data-circle="${message.getId()}"></div>
+															<div class="card-title-text" th:text="${message.getTitle()}"></div>
+														</div>
+														<p class="card-text text-end card-date text-muted" th:text="${#dates.format(message.getCreatedAt(), 'MM月dd日')}"></p> 			
+						                            </div>                                                                           
+						                        </div>
+						                    </div>
+											
+											<div th:if="${message.getAlreadyRead()}" class="card read-message-div" style="background-color: darkgray;" th:data-message-id="${message.getId()}">
+						                        <div class="px-2 												message-card-conents-outer" >
+												
+						                            <div class="message-card" >
+														
+						                                <div class="card-title">
+															<div class="circle-disable"></div>
+															<div class="card-title-text" th:text="${message.getTitle()}"></div>
+														</div>
+														<p class="card-text text-end card-date text-muted" th:text="${#dates.format(message.getCreatedAt(), 'MM月dd日')}"></p> 			
+						                            </div>                                                                           
+						                        </div>
+						                    </div>
+										</a>	
+					                </div>
+									
+								
+								<!-- メッセージ詳細モーダル -->
+								<div class="modal fade" th:id="${'detailModal'+message.getId()}" tabindex="-1" th:aria-labelledby="${'detailModalLabel'+message.getId()}" >
+				                   <div class="modal-dialog">
+				                       <div class="modal-content">
+				                           <div class="modal-header">
+				                               <h5 class="modal-title" th:id="${'deleteReviewModalLabel' + message.getId()}" th:text="${message.getTitle()}" style="color: black!important;"></h5> 
+				                           </div>
+										   
+										   <div class="modal-body">
+									          <p th:text="${message.getContents()}" style="color: black!important;"></p>
+									       </div>
+										   
+				                           <div class="modal-footer">
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+				                           </div>
+				                       </div>
+				                   </div>
+				               </div>
+							 </div>            
+			            </div>                                     
+			        </div>    
+					
+					<script>
+						const unreadMessageDiv=document.querySelectorAll('.unread-message-div');						
+						unreadMessageDiv.forEach(function(element){
+							
+							element.addEventListener("click",function(){changeMessageRead(element)});
+						});
+						
+						
+					
+						
+						
+						function changeMessageRead(element)
+						{
+							const messageId= element.getAttribute("data-message-id");
+							const XHR=new XMLHttpRequest();
+							XHR.open('GET', `/message/user/change/read?messageId=${encodeURIComponent(messageId)}`, true);
+							XHR.responseType = 'json';
+							XHR.send();
+							XHR.onload=function(){ 
+								if (XHR.status === 200) {
+									element.style.backgroundColor="darkgray";
+									element.classList.remove("unread-message-div");
+									element.classList.add('read-message-div');
+								};	
+								
+							};
+						};
+						
+					/*	function deleteMessageReadAll()
+						{
+							const readMessageDiv=document.querySelectorAll('.read-message-div');
+							
+							readMessageDiv.forEach(function(element){
+								console.log(element);
+								deleteMessageRead(element)});
+						};	
+						
+						function deleteMessageRead(element)
+						{
+							console.log("b");
+							const messageId= element.getAttribute("data-message-id");							
+							
+							const XHR=new XMLHttpRequest();
+							XHR.open('GET', `/message/user/delete/message/read?messageId=${encodeURIComponent(messageId)}`, true);
+							XHR.responseType = 'json';
+							XHR.send();
+							
+							XHR.onload=function(){ 
+								if (XHR.status === 200) {
+									console.log("b");
+									element.remove();	
+								};	
+								
+							};
+						};
+						*/
+						
+						
+						
+						
+					</script>	
+				
+			        
+					<!-- ページネーション -->
+					<div th:if="${MessageFromAdminPage.getTotalPages() > 1}" class="d-flex justify-content-center">
+						<nav aria-label="レビュー一覧ページ">
+							<ul class="pagination message-pagenation">
+								<li class="page-item">
+									<span th:if="${MessageFromAdminPage.isFirst()}"
+										class="page-link disabled 									boarderless-disabled">前</span>
+									<a th:unless="${MessageFromAdminPage.isFirst()}"
+										th:href="@{/message/show(page = ${MessageFromAdminPage.getNumber() - 1})}"
+										class="page-link 									boarderless-page-link">前</a>
+								</li>
+								<li th:each="i : ${#numbers.sequence(0,MessageFromAdminPage.getTotalPages() - 1)}" class="page-item">
+									<span th:if="${i == MessageFromAdminPage.getNumber()}"
+										class="page-link active 									boarderless-active" th:text="${i + 1}"></span>
+									<a th:unless="${i == MessageFromAdminPage.getNumber()}" th:href="@{/message/show(page = ${i})}"
+										class="page-link 									boarderless-page-link" th:text="${i + 1}"></a>
+								</li>
+								<li class="page-item">
+									<span th:if="${MessageFromAdminPage.isLast()}" class="page-link disabled boarderless-disabled">次</span>
+									<a th:unless="${MessageFromAdminPage.isLast()}"
+										th:href="@{/message/show(page = ${MessageFromAdminPage.getNumber() + 1})}"
+										class="page-link boarderless-page-link">次</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					</div>
+				</div>
+			</main>
+
+			
+
+		</div>
+	
+		
+		<div th:replace="~{fragment::scripts}"></div>
+		
+		<script>
+			function switchCircle(elem){
+				let id=elem.dataset.parent;
+				document.querySelectorAll(".circle").forEach((elem)=>{
+					if(id==elem.dataset.circle){
+						elem.classList.remove("circle");
+						elem.classList.add("circle-disable");
+					}
+				})
+			}
+		</script>
+		
+	</body>
+</html>

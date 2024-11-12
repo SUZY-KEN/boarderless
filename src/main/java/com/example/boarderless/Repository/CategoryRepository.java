@@ -1,4 +1,4 @@
-package com.example.boarderless.Repository;
+package com.example.boarderless.repository;
 
 import java.util.List;
 

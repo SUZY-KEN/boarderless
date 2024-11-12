@@ -35,11 +35,11 @@ public class Spot {
 	
 //	リレーションシップでつなぐ
 	@Column(name="imagefile_id")
-	private Integer imagefileId;
+	private String imagefileId;
 	
 	@ManyToOne
 	@JoinColumn(name="category_id")
-	private Category categoryId;
+	private Category categoryId; 
 	
 	@OneToOne
 	@JoinColumn(name="user_id")
@@ -55,12 +55,25 @@ public class Spot {
 	private Integer evalues;
 	
 	@Column(name="evalues_double")
-	private String evaluesDouble;
+	private Double evaluesDouble;
 	
 	@Column(name="price")
 	private Integer price;
 	
+	@Column(name="enable")
+	private Boolean enable;
+	
+	@Column(name="is_rejected")
+	private Boolean isRejected;
+	
+	@Column(name="is_reported")
+	private Boolean isReported;
+	
 	@Column(name="created_at")
 	private Timestamp createdAt;
 	
+	
+	
 }
+
+
