@@ -105,11 +105,14 @@
 											<a>注意<span style="margin-left: 0.2rem;">&#x25BE;</span></a>
 											<ul>
 												<li><a href="javascript:void(0)" class="white-a" data-index="7"
-														onclick="tapIndexElem(this)">登録スポットでのトラブルについて</a></li>
+														onclick="tapIndexElem(this)">登録スポットでのトラブル</a></li>
 												<li><a href="javascript:void(0)" class="white-a" data-index="8"
 														onclick="tapIndexElem(this)">登録スポットの管理について</a></li>
 											</ul>
 										</li>
+										<li class="site-map-list">
+											<a href="javascript:void(0)" class="white-a"data-index="10" onclick="tapIndexElem(this)">スケートボードに関する法規に関して</a></li>
+										
 										<li class="site-map-list"><a href="javascript:void(0)" class="white-a"
 												data-index="9" onclick="tapIndexElem(this)">お問い合わせ</a></li>
 									</ul>
@@ -341,7 +344,7 @@
 										<div class="d-flex 	align-items-end"
 											style="height:27px;width:100%;position: relative;">
 											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
-											<h4 class="m-0" style="height: 100%;">登録スポットでのトラブルについて</h4>
+											<h4 class="m-0" style="height: 100%;">登録スポットでのトラブル</h4>
 										</div>
 
 										<div data-toggle="7" class="site-toggle-btn">+</div>
@@ -394,6 +397,28 @@
 									</div>
 
 
+								</div>
+								
+								<div class="site-main-content-paragraph-content site-index-object" data-parent="10">
+									<div class="d-flex 	align-items-end justify-content-between">
+										<div class="d-flex 	align-items-end"
+											style="height:27px;width:100%;position: relative;">
+											<img th:src="@{/image/site-paragraph-top-img2.png}" style="height: 100%;">
+											<h4 class="m-0" style="height: 100%;">スケートボードに関する法規</h4>
+										</div>
+	
+										<div data-toggle="10" class="site-toggle-btn">+</div>
+									</div>
+	
+									<hr class=" mb-2">
+	
+									<div class="site-main-content-paragraph-content site-index-object-child"
+										data-child="10" style="display:none">
+	
+										<p> ユーザーが道路交通法第76条第4項第3号の「交通のひんぱんな道路において、球戯をし、ローラー・スケートをし、またはこれらに類する行為をすること」に抵触しないようにスポットの管理をしていきます。</p>
+										<p>こちらでは交通の頻繁な道路か判定しづらい場合がありますので、ユーザーの皆様の判断でスポットの申請をしていただけますと幸いです。</p>
+	
+									</div>
 								</div>
 
 								<div class="site-main-content-paragraph-content site-index-object"
@@ -488,7 +513,7 @@
 										<ul class="accordion__list">
 											<li>
 												<a href="javascript:void(0)" class="accordion__link" data-index="7"
-													onclick="tapIndexElem(this,true)">登録スポットでのトラブルについて</a>
+													onclick="tapIndexElem(this,true)">登録スポットでのトラブル</a>
 											</li>
 											<li>
 												<a href="javascript:void(0)" class="accordion__link" data-index="8"
@@ -496,8 +521,13 @@
 											</li>
 
 										</ul>
-									</div>
+								</div>
 								</li>
+							 
+								<li>
+									<a href="javascript:void(0)" class=" global-navigation__link" data-index="10" onclick="tapIndexElem(this,true)">スケートボードに関する法規に関して</a>
+								</li>
+								
 								<li>
 
 									<a href="javascript:void(0)" class=" global-navigation__link" data-index="9"
