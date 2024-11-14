@@ -2454,7 +2454,11 @@ if (mediaQuery.matches) {
 	swipeReviewList.addEventListener('touchstart', handleTouchStart);
 	swipeReviewList.addEventListener('touchend', handleTouchEnd);
 	handleClick();
-
+	
+	document.querySelectorAll(".swipe-y").forEach((element) => {
+    element.addEventListener('touchstart', handleTouchStart);
+    element.addEventListener('touchend', handleTouchEnd);
+});
 	//   Xスワイプ
 	const panel = document.getElementById('panelGroup');
 	panel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
@@ -2489,10 +2493,10 @@ function handleTouchEnd(e) {
 	const endY = e.changedTouches[0].clientY;
 	console.log("swiping");
 	// スワイプ距離が一定以上であればメニューを開く
-	if ((startY - endY > 300) && (boolReviewer == false)) {
+	if ((startY - endY > 100) && (boolReviewer == false)) {
 		swipeAndDelayBool(rightContainer, true, boolReviewer, "full");
 		console.log("swipe-up");
-	} else if ((startY - endY > 100) && (boolReviewer == false)) {
+	} else if ((startY - endY > 50) && (boolReviewer == false)) {
 		swipeAndDelayBool(rightContainer, true, boolReviewer, 'medium');
 		console.log("swipe-up");
 	}

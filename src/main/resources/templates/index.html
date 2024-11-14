@@ -488,8 +488,8 @@
 							</div>
 						</div>
 						<div class="review-container-all">
-							<div id="review-container-header">
-								<div class='d-flex justify-content-between mt-1 mx-2' id="review-sort-header">
+							<div id="review-container-header ">
+								<div class='d-flex justify-content-between mt-1 mx-2 swipe-y' id="review-sort-header">
 									<div class='function-cluster-right'>
 										<a class='funciton-item mx-1' id='sort-btn'>
 											<div id="sort-img">
@@ -555,7 +555,14 @@
 						<div class="detail-container" id='register-spot-container-min' style="z-index:2;display: none;">
 							<div class="map-absolute-right-tab">
 
-								<div class='d-flex  header-review-detail'>
+								<div class='d-flex  header-review-detail swipe-y'>
+									<div class="header-review-detail-btn-style">
+											<button type="button" style="visibility: hidden;"
+												class='resister-spot-detail-delete-btn btn-icon m-auto general-cancel-btn'>
+												<img class='w-100 h-100 ' src='./image/cancel-btn(178,178,178).svg'
+													alt='キャンセル'>
+											</button>
+										</div>
 									<div class='w-100 d-flex justify-content-center '>
 										<p class='text-center text-break m-0 header-font-size' id='share-spot-name'>
 											スポット登録</p>
@@ -712,7 +719,7 @@
 						<!--							詳細タブ-->
 						<div class="detail-container" id="review-detail-container-min">
 							<div class='review-detail-card map-absolute-right-tab'>
-								<div class='d-flex  header-review-detail'>
+								<div class='d-flex  header-review-detail swipe-y'>
 									<div class="header-review-detail-btn-style" style="visibility: hidden;">
 										<button onclick='' class='review-detail-delete-btn btn-icon general-cancel-btn'>
 											<img class='w-100 h-100 ' src='./image/cancel-btn(178,178,178).svg'
