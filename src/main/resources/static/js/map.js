@@ -606,7 +606,7 @@ function createReview(markerData) {
 
 			var imageFileUrl;
 			if (markerData[i]['imagefileId']) {
-				imageFileUrl ="https://boarderless-repositories.s3.ap-northeast-1.amazonaws.com/spotImage/"+  markerData[i]['imagefileId'];
+				imageFileUrl = "https://boarderless-repositories.s3.ap-northeast-1.amazonaws.com/spotImage/" + markerData[i]['imagefileId'];
 			} else {
 				imageFileUrl = "/image/noImage.png";
 			}
@@ -734,17 +734,17 @@ if (document.getElementById('fav-sort-btn')) {
 		const sortFavImg = document.getElementById('fav-sort-img');
 		const sortMyspotImg = document.getElementById('myspot-sort-img');
 		const sortReportBoxImg = document.getElementById('report-sort-img');
-		
+
 		sortValues["sortMySpot"] = false;
-		
+
 		sortMyspotImg.innerHTML = "<img class='funciton-img-right'  src='./image/myspot-btn.svg' alt='マイスポット' >";
-		
-		if(sortReportBoxImg!=null){
+
+		if (sortReportBoxImg != null) {
 			sortValues["sortReportBox"] = false;
-		sortReportBoxImg.innerHTML = '<img src="/image/report-btn.svg" alt="通報箱" class="funciton-img-right">';
+			sortReportBoxImg.innerHTML = '<img src="/image/report-btn.svg" alt="通報箱" class="funciton-img-right">';
 		}
-		
-		
+
+
 		if (sortValues["sortFavorite"] == true) {
 			sortFavImg.innerHTML = "<img class='funciton-img-right'  src='./image/star-btn.svg' alt='お気に入り' >";
 			sortValues["sortFavorite"] = false;
@@ -752,7 +752,7 @@ if (document.getElementById('fav-sort-btn')) {
 			sortFavImg.innerHTML = "<img class='funciton-img-right'  src='./image/star-pushed-btn.svg' alt='お気に入り閲覧中' >";
 			sortValues["sortFavorite"] = true;
 		}
-		
+
 		console.log("sortFavoriteBtn" + sortValues["sortFavorite"]);
 		resetmarker();
 		markerDataList = [];
@@ -771,13 +771,13 @@ if (document.getElementById('myspot-sort-btn')) {
 		const sortReportBoxImg = document.getElementById('report-sort-img');
 		sortValues["sortFavorite"] = false;
 		sortFavImg.innerHTML = "<img class='funciton-img-right'  src='./image/star-btn.svg' alt='お気に入り' >";
-		
-	if(sortReportBoxImg!=null){
+
+		if (sortReportBoxImg != null) {
 			sortValues["sortReportBox"] = false;
-		sortReportBoxImg.innerHTML = '<img src="/image/report-btn.svg" alt="通報箱" class="funciton-img-right">';
+			sortReportBoxImg.innerHTML = '<img src="/image/report-btn.svg" alt="通報箱" class="funciton-img-right">';
 		}
-		
-		
+
+
 		if (sortValues["sortMySpot"] == true) {
 			sortMyspotImg.innerHTML = "<img class='funciton-img-right'  src='./image/myspot-btn.svg' alt='マイスポット' >";
 			sortValues["sortMySpot"] = false;
@@ -786,7 +786,7 @@ if (document.getElementById('myspot-sort-btn')) {
 			sortMyspotImg.innerHTML = "<img class='funciton-img-right'  src='./image/myspot-pushed-btn.svg' alt='マイスポット閲覧中' >";
 			sortValues["sortMySpot"] = true;
 		}
-	
+
 		resetmarker();
 		markerDataList = [];
 		createMarker(map);
@@ -867,7 +867,7 @@ async function createReviewDetail(spotId) {
 
 			var imageFileUrl;
 			if (spotDetail.spot['imagefileId']) {
-				imageFileUrl ="https://boarderless-repositories.s3.ap-northeast-1.amazonaws.com/spotImage/"+ spotDetail.spot['imagefileId'];
+				imageFileUrl = "https://boarderless-repositories.s3.ap-northeast-1.amazonaws.com/spotImage/" + spotDetail.spot['imagefileId'];
 			} else {
 				imageFileUrl = "./image/noImage.png";
 			}
@@ -900,7 +900,7 @@ async function createReviewDetail(spotId) {
 
 		document.getElementById('review-header-text').innerHTML = spotName;
 
-		document.getElementById('review-detail-image').src =imageFileUrl;
+		document.getElementById('review-detail-image').src = imageFileUrl;
 		document.getElementById('review-show-star').innerHTML = star;
 		document.getElementById('review-show-price').innerText = price;
 		//document.getElementById('review-show-evalues').innerHTML = evaluesDouble;				
@@ -2260,16 +2260,16 @@ function cretaeReviewShowAdmin(spotId) {
 }
 
 //スポットデリート
-function deleteSpot(spotId){
-	document.getElementById("spot-deleter").addEventListener('click',function(){
-		console.log("spot-delete:spotId:"+spotId);
-		
+function deleteSpot(spotId) {
+	document.getElementById("spot-deleter").addEventListener('click', function() {
+		console.log("spot-delete:spotId:" + spotId);
+
 		const XHR = new XMLHttpRequest();
 		XHR.open('GET', `/admin/map/spot/delete?spotId=${encodeURIComponent(spotId)}`, true);
-	
+
 		XHR.responseType = 'json';
 		XHR.send();
-	
+
 		XHR.onload = function() {
 			if (XHR.status === 200) {
 				alert("スポットを削除しました");
@@ -2277,8 +2277,8 @@ function deleteSpot(spotId){
 				reviewDetailDelete();
 				createMarker(map);
 			}
-		}	
-		
+		}
+
 	});
 }
 
@@ -2297,9 +2297,9 @@ if (document.getElementById("approve-arleady-btn")) {
 		const favSortBtn = document.getElementById('fav-sort-btn');
 		const mySpotSortBtn = document.getElementById('myspot-sort-btn');
 		const reportBoxSortBtn = document.getElementById('report-sort-btn');
-		
-			
-		reportBoxSortBtn.style.visibility='hidden';
+
+
+		reportBoxSortBtn.style.visibility = 'hidden';
 		sortBtn.style.visibility = 'hidden';
 		favSortBtn.style.visibility = 'hidden';
 		mySpotSortBtn.style.visibility = 'hidden';
@@ -2321,8 +2321,8 @@ if (document.getElementById("approve-cancel-btn")) {
 		const favSortBtn = document.getElementById('fav-sort-btn');
 		const mySpotSortBtn = document.getElementById('myspot-sort-btn');
 		const reportBoxSortBtn = document.getElementById('report-sort-btn');
-		
-		reportBoxSortBtn.style.visibility='visible';
+
+		reportBoxSortBtn.style.visibility = 'visible';
 		sortBtn.style.visibility = 'visible';
 		favSortBtn.style.visibility = 'visible';
 		mySpotSortBtn.style.visibility = 'visible';
@@ -2454,11 +2454,11 @@ if (mediaQuery.matches) {
 	swipeReviewList.addEventListener('touchstart', handleTouchStart);
 	swipeReviewList.addEventListener('touchend', handleTouchEnd);
 	handleClick();
-	
+
 	document.querySelectorAll(".swipe-y").forEach((element) => {
-    element.addEventListener('touchstart', handleTouchStart);
-    element.addEventListener('touchend', handleTouchEnd);
-});
+		element.addEventListener('touchstart', handleTouchStart);
+		element.addEventListener('touchend', handleTouchEnd);
+	});
 	//   Xスワイプ
 	const panel = document.getElementById('panelGroup');
 	panel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });

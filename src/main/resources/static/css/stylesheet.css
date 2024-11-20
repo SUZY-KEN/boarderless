@@ -20,7 +20,7 @@ body {
 }
 
 .header-content {
-	z-index:1000;
+	z-index: 1000;
 	display: flex;
 	justify-content: center;
 	height: 100px;
@@ -28,15 +28,15 @@ body {
 	padding-top: 1rem;
 	padding-bottom: 0.5rem;
 	position: relative;
-	background-color: rgb(33,33,33);
+	background-color: rgb(33, 33, 33);
 
 	a {
 		position: relative;
 	}
 }
 
-.header-margin{
-	height:100px;
+.header-margin {
+	height: 100px;
 }
 
 .logo {
@@ -151,7 +151,7 @@ body {
 	display: flex;
 	flex-direction: column;
 
-	
+
 	color: #f5f5f5;
 }
 
@@ -174,14 +174,14 @@ body {
 	flex-direction: column;
 }
 
-.gradiention-container{
-	position:fixed;
-	top:0;
+.gradiention-container {
+	position: fixed;
+	top: 0;
 	height: 100vh;
-	width:100vw;
+	width: 100vw;
 	background-image: linear-gradient(to bottom, rgb(110, 110, 110), 1%, rgb(33, 33, 33));
 	z-index: -1;
-	
+
 }
 
 
@@ -386,7 +386,7 @@ body {
 	width: 150px;
 	display: flex;
 	align-items: stretch;
-	
+
 }
 
 .review-card-image {
@@ -396,19 +396,19 @@ body {
 	object-fit: cover;
 	height: 100px;
 	border-radius: 5px;
-	position:relative;
+	position: relative;
 }
 
 
 
 
-.review-container-all{
+.review-container-all {
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	width:100%;
-	
+	width: 100%;
+
 }
 
 .review-card-padding {
@@ -850,7 +850,7 @@ a.info-btn-aradient:hover:after {
 
 .category-option {
 	background-color: rgb(33, 33, 33);
-	color:#f5f5f5;
+	color: #f5f5f5;
 }
 
 .general-cancel-btn {
@@ -1019,12 +1019,13 @@ a.info-btn-aradient:hover:after {
 
 .fixed-index {
 	display: none;
-	
-	
+
+
 }
 
-.message-card-conents-outer{
-	height:7vh;width:100%;
+.message-card-conents-outer {
+	height: 7vh;
+	width: 100%;
 }
 
 
@@ -1063,19 +1064,19 @@ a.info-btn-aradient:hover:after {
 			margin-left: 1.5%;
 			box-shadow: 0 0 10px rgba(0, 96, 161, 100);
 		}
-		
-		.circle-disable{
+
+		.circle-disable {
 			height: 15%;
 			aspect-ratio: 1 / 1;
 			background-color: #808080;
 			border-radius: 50%;
-			
+
 			margin-top: auto;
 			margin-bottom: auto;
 			margin-right: 5%;
 			margin-left: 1.5%;
-			
-			
+
+
 		}
 
 		.card-title-text {
@@ -1098,35 +1099,36 @@ a.info-btn-aradient:hover:after {
 
 }
 
-.header__nav-area{
-	display:none;
+.header__nav-area {
+	display: none;
 }
 
 .boarderless-active {
-   background-color:  rgb(255, 113, 29) !important;
-   border-color:  rgb(255, 113, 29)!important;
-   color:#f5f5f5!important;
- }
- 
- .boarderless-page-link {
-   color: rgb(255, 113, 29);
- }
- 
- .page-item{
-	
-	a{
-		color:#f5f5f5!important;
-		background-color: #212529!important;
-		
-	&:hover {
-		filter: drop-shadow(10px 10px 20px red) invert(75%);
+	background-color: rgb(255, 113, 29) !important;
+	border-color: rgb(255, 113, 29) !important;
+	color: #f5f5f5 !important;
+}
+
+.boarderless-page-link {
+	color: rgb(255, 113, 29);
+}
+
+.page-item {
+
+	a {
+		color: #f5f5f5 !important;
+		background-color: #212529 !important;
+
+		&:hover {
+			filter: drop-shadow(10px 10px 20px red) invert(75%);
+		}
 	}
-	}
- }
- .boarderless-disabled{
-	color:#f5f5f5!important;
-	background-color: transparent!important;
- }
+}
+
+.boarderless-disabled {
+	color: #f5f5f5 !important;
+	background-color: transparent !important;
+}
 
 /*スマホ*/
 @media screen and (max-width: 800px) {
@@ -1149,17 +1151,20 @@ a.info-btn-aradient:hover:after {
 
 	}
 
-.header-margin{
-	height:60px;
-}
+	.header-margin {
+		height: 60px;
+	}
+
 	.header-content {
-		z-index:1000;
+		z-index: 1000;
 		display: flex;
 		justify-content: center;
 		height: 60px;
 		width: 100%;
-		background-color: rgb(33,33,33);
-		position: fixed;top: 0;left:0;
+		background-color: rgb(33, 33, 33);
+		position: fixed;
+		top: 0;
+		left: 0;
 
 		a {
 			position: relative;
@@ -2161,7 +2166,7 @@ a.info-btn-aradient:hover:after {
 		z-index: 1000;
 		position: absolute;
 		left: 0;
-		top:0;
+		top: 0;
 	}
 
 	.hamburger {
@@ -2192,7 +2197,7 @@ a.info-btn-aradient:hover:after {
 
 	.hamburger.-active .hamburger__text::before {
 		content: '閉じる';
-		
+
 	}
 
 	.hamburger__line {
@@ -2247,7 +2252,7 @@ a.info-btn-aradient:hover:after {
 	}
 
 	.header__nav-area {
-		
+
 		display: block;
 		position: fixed;
 		top: 0;
@@ -2365,79 +2370,81 @@ a.info-btn-aradient:hover:after {
 			filter: drop-shadow(1px 1px 20px red) invert(75%);
 		}
 	}
-	
-	.message-card-conents-outer{
-	height:5vh;width:100%;
+
+	.message-card-conents-outer {
+		height: 5vh;
+		width: 100%;
 	}
-	
+
 	.message-card {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	height: 100%;
-	position: relative;
-	align-items: center;
-
-
-
-
-	.card-title {
-		flex: 8;
-		margin: 0;
-		font-size: 0.8em;
-		font-weight: bold;
-		color: black;
-
+		display: flex;
+		justify-content: space-between;
 		width: 100%;
 		height: 100%;
-		display: flex;
 		position: relative;
+		align-items: center;
 
-		.circle {
-			height: 15%;
-			aspect-ratio: 1 / 1;
 
-			background-color: #3498db;
-			border-radius: 50%;
-			margin-top: auto;
-			margin-bottom: auto;
-			margin-right: 5%;
-			margin-left: 1.5%;
-			box-shadow: 0 0 10px rgba(0, 96, 161, 100);
+
+
+		.card-title {
+			flex: 8;
+			margin: 0;
+			font-size: 0.8em;
+			font-weight: bold;
+			color: black;
+
+			width: 100%;
+			height: 100%;
+			display: flex;
+			position: relative;
+
+			.circle {
+				height: 15%;
+				aspect-ratio: 1 / 1;
+
+				background-color: #3498db;
+				border-radius: 50%;
+				margin-top: auto;
+				margin-bottom: auto;
+				margin-right: 5%;
+				margin-left: 1.5%;
+				box-shadow: 0 0 10px rgba(0, 96, 161, 100);
+			}
+
+			.circle-disable {
+				height: 15%;
+				aspect-ratio: 1 / 1;
+
+
+
+				margin-top: auto;
+				margin-bottom: auto;
+				margin-right: 5%;
+				margin-left: 1.5%;
+
+
+			}
+
+			.card-title-text {
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+
+
 		}
-		.circle-disable{
-			height: 15%;
-			aspect-ratio: 1 / 1;
 
-		
-			
-			margin-top: auto;
-			margin-bottom: auto;
-			margin-right: 5%;
-			margin-left: 1.5%;
-			
-			
-		}
 
-		.card-title-text {
-			margin-top: auto;
-			margin-bottom: auto;
+
+		.card-date {
+			flex: 2;
+			font-size: 0.6em;
+			padding-right: 0.5rem;
+
 		}
 
 
 	}
 
 
-
-	.card-date {
-		flex: 2;
-				font-size: 0.6em;
-		padding-right: 0.5rem;
-
-	}
-
-
-}
-	
-	
 }
